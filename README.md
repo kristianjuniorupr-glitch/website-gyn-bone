@@ -28,10 +28,14 @@ Aplikasi Web Fullstack Modern untuk Gym & Pusat Kebugaran **COREX Strength and C
 - **Quote Banner Carousel**: Testimoni berputar otomatis dengan navigasi titik (*dots indicator*).
 - **Accordion Tanya Jawab (FAQ)**: 6 pertanyaan umum yang dapat dibuka-tutup dengan transisi halus.
 - **Newsletter Subscription**: Formulir pendaftaran mingguan (*Weekly Training Note*) yang terhubung ke backend API dengan notifikasi Toast.
-- **Staff Admin Dashboard**:
+- **Portal Staf & Admin Terpisah (`/admin`)**:
+  - Halaman publik (`/`) bersih tanpa tombol admin demi tampilan profesional bagi pengunjung & anggota.
+  - Halaman admin khusus diakses melalui URL: **`http://localhost:5000/admin`**.
+  - **Custom Login Endpoint**: Proteksi sesi staf melalui `POST /api/admin/login` dengan Bearer token.
+  - Kredensial default: Username `admin` / Password `corex2026` (dikonfigurasi di `backend/.env`).
   - Metrik statistik gym secara live (total booking, kapasitas utilisasi, total member aktif, dan pelanggan newsletter).
   - Manajemen reservasi kelas dengan fitur **Batalkan Booking (1-Click Cancel)** yang otomatis mengembalikan kuota slot ke jadwal.
-  - Daftar anggota terdaftar & daftar email newsletter.
+  - Daftar direktori anggota terdaftar & daftar email prospek newsletter.
   - Tombol **Reset Demo Data** untuk mengembalikan database ke status awal kapan saja.
 
 ---
