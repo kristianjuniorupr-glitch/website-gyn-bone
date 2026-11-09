@@ -56,15 +56,15 @@ export default function Schedule({ onBookClass, refreshTrigger, activeCategory =
   });
 
   return (
-    <section className="bg-brand-charcoal text-white py-24 border-t border-brand-borderDark" id="schedule">
+    <section className="bg-brand-charcoal text-white py-12 sm:py-14 lg:py-16 border-t border-brand-borderDark scroll-mt-20 lg:scroll-mt-24" id="schedule">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 sm:mb-8 gap-4">
           <div>
-            <span className="block text-xs font-semibold uppercase tracking-widest text-brand-crimson mb-1">
+            <span className="block text-xs font-bold uppercase tracking-widest text-brand-crimson mb-1">
               CLASS SCHEDULE
             </span>
-            <h2 className="font-headline text-5xl sm:text-7xl uppercase tracking-tight text-white leading-none">
+            <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-white leading-none">
               THIS WEEK ON THE FLOOR.
             </h2>
           </div>

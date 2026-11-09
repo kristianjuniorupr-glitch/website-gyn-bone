@@ -54,15 +54,18 @@ export default function FAQ() {
   };
 
   return (
-    <section className="bg-white py-24 border-t border-zinc-200" id="faq">
+    <section className="bg-white py-12 sm:py-14 lg:py-16 border-t border-zinc-200 scroll-mt-20 lg:scroll-mt-24" id="faq">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Left Title */}
           <div className="lg:col-span-5">
             <div className="sticky top-28 space-y-4">
-              <span className="block text-xs font-semibold uppercase tracking-widest text-brand-crimson">
+              <span className="block text-xs font-bold uppercase tracking-widest text-brand-crimson">
                 FAQ & ASSISTANCE
               </span>
+              <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl uppercase text-zinc-950 tracking-tight leading-none">
+                FREQUENTLY ASKED QUESTIONS
+              </h2>
               <h2 className="font-headline text-5xl sm:text-7xl uppercase text-zinc-950 tracking-tight leading-none select-none">
                 QUESTIONS<br />BEFORE YOU<br />START?
               </h2>

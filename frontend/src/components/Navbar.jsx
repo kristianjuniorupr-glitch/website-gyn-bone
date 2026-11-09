@@ -19,7 +19,12 @@ export default function Navbar({ onOpenJoinModal }) {
     setMobileMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const navOffset = 76; // exact sticky navbar height offset
+      const elementPos = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: Math.max(0, elementPos - navOffset),
+        behavior: 'smooth'
+      });
     }
   };
 

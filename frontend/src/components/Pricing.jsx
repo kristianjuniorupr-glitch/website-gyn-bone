@@ -54,14 +54,14 @@ export default function Pricing({ onOpenJoinModal }) {
   ];
 
   return (
-    <section className="bg-white py-24 sm:py-32 border-t border-zinc-200" id="pricing">
+    <section className="bg-white py-12 sm:py-14 lg:py-16 border-t border-zinc-200 scroll-mt-20 lg:scroll-mt-24" id="pricing">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Headline & Billing Toggle */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="block text-xs font-semibold uppercase tracking-widest text-brand-crimson mb-2">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+          <span className="block text-xs font-bold uppercase tracking-widest text-brand-crimson mb-1.5">
             TRANSPARENT MEMBERSHIPS
           </span>
-          <h2 className="font-headline text-6xl sm:text-7xl uppercase text-zinc-950 tracking-tight mb-6 select-none">
+          <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl uppercase text-zinc-950 tracking-tight mb-4 select-none">
             NO CONTRACTS NO EXCUSES
           </h2>
 

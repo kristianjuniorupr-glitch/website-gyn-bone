@@ -48,15 +48,16 @@ export default function Disciplines({ onSelectDiscipline, onOpenConsultModal }) 
   };
 
   return (
-    <section className="bg-[#f7f7f8] py-24 border-t border-zinc-200" id="disciplines">
+    <section className="bg-[#f7f7f8] py-12 sm:py-14 lg:py-16 border-t border-zinc-200 scroll-mt-20 lg:scroll-mt-24" id="disciplines">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Section Header */}
-        <div className="flex items-end justify-between mb-12">
+        <div className="flex items-end justify-between mb-8 gap-4">
           <div>
-            <span className="block text-xs font-semibold uppercase tracking-widest text-brand-crimson mb-2">
+            <span className="block text-xs font-bold uppercase tracking-widest text-brand-crimson mb-1">
               ATHLETIC DOMAINS
             </span>
-            <h2 className="font-headline text-5xl sm:text-7xl uppercase text-zinc-950 tracking-tight leading-none">
+            <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl uppercase text-zinc-950 tracking-tight leading-none">
               PICK YOUR DISCIPLINE
             </h2>
           </div>
@@ -66,28 +67,28 @@ export default function Disciplines({ onSelectDiscipline, onOpenConsultModal }) 
             <button 
               onClick={prevSlide}
               aria-label="Previous slide" 
-              className="w-10 h-10 rounded-full border border-zinc-300 hover:border-zinc-900 flex items-center justify-center text-zinc-700 hover:text-zinc-900 transition active:scale-95"
+              className="w-9 h-9 rounded-full border border-zinc-300 hover:border-zinc-900 flex items-center justify-center text-zinc-700 hover:text-zinc-900 transition active:scale-95 cursor-pointer"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4" />
             </button>
             <button 
               onClick={nextSlide}
               aria-label="Next slide" 
-              className="w-10 h-10 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-zinc-800 transition active:scale-95"
+              className="w-9 h-9 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-zinc-800 transition active:scale-95 cursor-pointer"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Discipline Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {disciplines.map((item, idx) => {
+        {/* Discipline Cards Grid - Viewport Friendly */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {disciplines.map((item) => {
             const Icon = item.icon;
             return (
               <div 
                 key={item.id}
-                className="relative group rounded-xl overflow-hidden aspect-[3/4] bg-zinc-900 shadow-md hover:shadow-2xl transition duration-300 flex flex-col justify-end cursor-pointer"
+                className="relative group rounded-2xl overflow-hidden h-72 sm:h-80 lg:h-[340px] bg-zinc-900 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-end cursor-pointer"
                 onClick={() => {
                   if (item.id === 'coaching') {
                     onOpenConsultModal();
@@ -108,25 +109,25 @@ export default function Disciplines({ onSelectDiscipline, onOpenConsultModal }) 
               >
                 <img 
                   alt={item.title} 
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition duration-700 opacity-80" 
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80" 
                   src={item.image} 
                 />
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
                 
                 {/* Discipline Tag */}
                 <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md p-2 rounded-full border border-white/10 text-white">
                   <Icon className="w-4 h-4 text-brand-crimson" />
                 </div>
 
-                <div className="relative z-10 p-6 text-white">
-                  <h3 className="font-headline text-3xl tracking-wide uppercase mb-2 group-hover:text-red-400 transition-colors">
+                <div className="relative z-10 p-5 text-white">
+                  <h3 className="font-headline text-2xl sm:text-3xl tracking-wide uppercase mb-1.5 group-hover:text-red-400 transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-zinc-300 leading-snug mb-3">
+                  <p className="text-xs text-zinc-300 leading-snug mb-2.5 line-clamp-2">
                     {item.tagline}
                   </p>
-                  <span className="inline-flex items-center text-[10px] font-bold uppercase tracking-wider text-white/70 group-hover:text-white">
+                  <span className="inline-flex items-center text-[10px] font-bold uppercase tracking-wider text-brand-crimson group-hover:text-white transition">
                     {item.id === 'coaching' ? 'BOOK COACH →' : 'VIEW SCHEDULE →'}
                   </span>
                 </div>
@@ -134,8 +135,8 @@ export default function Disciplines({ onSelectDiscipline, onOpenConsultModal }) 
             );
           })}
         </div>
+
       </div>
     </section>
   );
 }
-
