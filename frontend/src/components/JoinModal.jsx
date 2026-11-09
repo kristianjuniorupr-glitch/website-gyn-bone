@@ -74,7 +74,7 @@ export default function JoinModal({ initialPlan = 'all-access', initialBilling =
                 MEMBERSHIP ACTIVATED
               </span>
               <h3 className="font-headline text-3xl uppercase tracking-wide text-white mt-1">
-                WELCOME TO COREX
+                WELCOME TO GYM BONE
               </h3>
             </div>
 
@@ -82,7 +82,7 @@ export default function JoinModal({ initialPlan = 'all-access', initialBilling =
             <div className="bg-gradient-to-br from-[#800f1e] to-[#141417] border border-brand-crimson/50 rounded-2xl p-6 text-left shadow-2xl relative overflow-hidden">
               <div className="flex justify-between items-start mb-6">
                 <div>
-                  <span className="font-headline text-2xl tracking-wider block text-white">COREX ATHLETE</span>
+                  <span className="font-headline text-2xl tracking-wider block text-white">GYM BONE ATHLETE</span>
                   <span className="text-[10px] text-zinc-300 uppercase tracking-widest">{confirmedMember.planName} • {confirmedMember.billingCycle}</span>
                 </div>
                 <div className="text-right">
@@ -123,7 +123,7 @@ export default function JoinModal({ initialPlan = 'all-access', initialBilling =
                 MEMBERSHIP ONBOARDING
               </span>
               <h3 className="font-headline text-3xl uppercase text-white tracking-wide">
-                JOIN COREX TODAY
+                JOIN GYM BONE TODAY
               </h3>
             </div>
 

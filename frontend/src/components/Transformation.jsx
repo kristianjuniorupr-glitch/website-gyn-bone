@@ -11,7 +11,7 @@ export default function Transformation() {
     id: 'sameer',
     quote: '“I CAME IN WANTING LESS PAIN. I STAYED BECAUSE I LEARNED WHAT STRONG ACTUALLY FEELS LIKE.”',
     author: 'SAMEER HOSSAIN',
-    meta: 'TRAINED AT COREX • 22 WEEKS RECOMPOSITION',
+    meta: 'TRAINED AT GYM BONE • 22 WEEKS RECOMPOSITION',
     stat1: '-18kg Body Fat',
     stat2: '+65kg Deadlift',
     stat3: '11.8% Body Fat',

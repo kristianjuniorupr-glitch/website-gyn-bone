@@ -74,7 +74,7 @@
       "coach": "Diego Ortiz",
       "category": "Conditioning",
       "totalSpots": 16,
-      "bookedSpots": 14,
+      "bookedSpots": 15,
       "description": "High tempo circuit to cap off Monday strong."
     },
     {
@@ -430,7 +430,7 @@
       "features": [
         "Everything included in Open Floor",
         "Unlimited group coached classes (Power Hour, Engine, etc.)",
-        "COREX Training App access with logged lift history",
+        "GYM BONE Training App access with logged lift history",
         "Monthly physical progress & body composition check-in",
         "Priority booking window for all peak class slots"
       ]
@@ -466,7 +466,7 @@
     {
       "id": 3,
       "question": "How do I book a class?",
-      "answer": "You can book classes directly on this website or using the COREX Mobile App up to 7 days in advance. Live spot availability updates automatically so you always know when spots are open."
+      "answer": "You can book classes directly on this website or using the GYM BONE Mobile App up to 7 days in advance. Live spot availability updates automatically so you always know when spots are open."
     },
     {
       "id": 4,
@@ -485,6 +485,19 @@
     }
   ],
   "bookings": [
+    {
+      "id": "CRX-8851",
+      "classId": "mon-7",
+      "className": "Night Grinders",
+      "coach": "Diego Ortiz",
+      "day": "MON",
+      "time": "19:00",
+      "userName": "Alex",
+      "userEmail": "alex22@gmail.com",
+      "userPhone": "08121547854125",
+      "createdAt": "2026-11-09T06:00:40.247Z",
+      "status": "confirmed"
+    },
     {
       "id": "CRX-9182",
       "classId": "mon-1",
@@ -513,6 +526,18 @@
     }
   ],
   "memberships": [
+    {
+      "id": "MBR-451",
+      "name": "denny",
+      "email": "kristianjuniorupr@gmail.com",
+      "phone": "+6285389153837",
+      "planId": "open-floor",
+      "planName": "OPEN FLOOR",
+      "billingCycle": "monthly",
+      "price": 39,
+      "status": "active",
+      "joinedAt": "2026-11-09T05:56:07.705Z"
+    },
     {
       "id": "MBR-101",
       "name": "Sameer Hossain",
@@ -548,6 +573,10 @@
     {
       "email": "sarah.athlete@yahoo.com",
       "subscribedAt": "2026-11-02T09:20:00.000Z"
+    },
+    {
+      "email": "kristianjuniorupr@gmail.com",
+      "subscribedAt": "2026-11-09T05:56:07.707Z"
     }
   ],
   "consultations": [

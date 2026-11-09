@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import gymBoneLogo from '../assets/gym-bone-logo.png';
 
 export default function Navbar({ onOpenJoinModal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,17 +26,19 @@ export default function Navbar({ onOpenJoinModal }) {
   return (
     <header className="w-full bg-[#0d0d10]/95 backdrop-blur-md border-b border-white/10 sticky top-0 z-40 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Brand Logo */}
+        {/* Brand Logo with Official GYM BONE Emblem */}
         <a 
           href="#home" 
           onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}
-          className="flex items-center gap-2 group text-white"
+          className="flex items-center gap-3 group text-white select-none"
         >
-          <span className="w-8 h-8 rounded-full border-2 border-brand-crimson flex items-center justify-center font-headline text-lg font-bold group-hover:scale-110 group-hover:bg-brand-crimson transition-all duration-300">
-            C
-          </span>
-          <span className="font-headline text-3xl tracking-wider text-white">
-            COREX
+          <img 
+            src={gymBoneLogo} 
+            alt="GYM BONE Emblem" 
+            className="h-11 w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_2px_10px_rgba(139,20,36,0.5)]"
+          />
+          <span className="font-headline text-3xl sm:text-4xl tracking-wider text-white">
+            GYM BONE
           </span>
         </a>
 

@@ -26,7 +26,7 @@ app.use('/api', apiRoutes);
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
-    app: 'COREX Gym Management Backend API',
+    app: 'GYM BONE Management Backend API',
     timestamp: new Date().toISOString()
   });
 });
@@ -50,7 +50,7 @@ app.get(/^(?!\/api).*/, (req, res) => {
   if (fs.existsSync(indexFile)) {
     return res.sendFile(indexFile);
   }
-  res.json({ message: 'COREX API Server is active. Frontend build not found.' });
+  res.json({ message: 'GYM BONE API Server is active. Frontend build not found.' });
 });
 
 // Fallback error handler
@@ -65,7 +65,7 @@ app.use((err, req, res, next) => {
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`===============================================`);
-    console.log(`  COREX BACKEND API RUNNING ON PORT ${PORT} `);
+    console.log(`  GYM BONE BACKEND API RUNNING ON PORT ${PORT} `);
     console.log(`  Health Check: http://localhost:${PORT}/api/health`);
     console.log(`  API Base:     http://localhost:${PORT}/api/schedules`);
     console.log(`===============================================`);

@@ -42,7 +42,7 @@ function adminLogin(req, res) {
     const sessionData = {
       username: validUsername,
       role: 'Super Admin',
-      name: 'COREX Head Operations',
+      name: 'GYM BONE Head Operations',
       expiresAt
     };
 

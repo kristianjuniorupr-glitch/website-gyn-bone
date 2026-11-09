@@ -52,7 +52,7 @@ function PublicLandingPage() {
   };
 
   const handleJoinSuccess = (msg) => {
-    showToast({ type: 'success', message: msg || 'Membership confirmed! Welcome to COREX.' });
+    showToast({ type: 'success', message: msg || 'Membership confirmed! Welcome to GYM BONE.' });
   };
 
   const handleConsultSuccess = (msg) => {

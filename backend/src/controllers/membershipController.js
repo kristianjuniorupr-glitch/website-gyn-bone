@@ -71,7 +71,7 @@ function joinPlan(req, res) {
 
     return res.status(201).json({
       success: true,
-      message: `Welcome to COREX! Your membership #${memberId} is activated.`,
+      message: `Welcome to GYM BONE! Your membership #${memberId} is activated.`,
       member: newMember
     });
   } catch (error) {

@@ -30,7 +30,7 @@ export default function Pricing({ onOpenJoinModal }) {
       features: [
         'Everything in Open Floor',
         'Unlimited group coached classes daily',
-        'COREX Training App access with logged lift history',
+        'GYM BONE Training App access with logged lift history',
         'Monthly physical progress & body composition check-in',
         'Priority 7-day advance booking window'
       ],

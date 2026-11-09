@@ -13,6 +13,7 @@ import {
   fetchAdminSubscribers,
   resetDatabase
 } from '../services/api';
+import gymBoneLogo from '../assets/gym-bone-logo.png';
 import {
   Shield,
   Lock,
@@ -232,12 +233,14 @@ export default function AdminPage() {
       <div className="min-h-screen bg-[#0a0a0d] text-white flex flex-col justify-between selection:bg-brand-crimson selection:text-white">
         {/* Top Minimal Bar */}
         <header className="w-full border-b border-white/5 py-4 px-6 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <span className="w-7 h-7 rounded-full border-2 border-brand-crimson flex items-center justify-center font-headline text-sm font-bold text-white">
-              C
-            </span>
-            <span className="font-headline text-2xl tracking-wider text-white">COREX</span>
-            <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase ml-2 px-2 py-0.5 rounded bg-white/5 border border-white/10">
+          <div className="flex items-center gap-3">
+            <img 
+              src={gymBoneLogo} 
+              alt="GYM BONE Emblem" 
+              className="h-8 w-auto object-contain drop-shadow" 
+            />
+            <span className="font-headline text-2xl tracking-wider text-white">GYM BONE</span>
+            <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase ml-1 px-2 py-0.5 rounded bg-white/5 border border-white/10">
               STAFF PORTAL
             </span>
           </div>
@@ -354,7 +357,7 @@ export default function AdminPage() {
 
         {/* Footer info */}
         <footer className="w-full border-t border-white/5 py-4 text-center text-[11px] text-zinc-600">
-          COREX Strength & Conditioning Facilities &copy; {new Date().getFullYear()}. All Rights Reserved.
+          GYM BONE Strength & Conditioning Facilities &copy; {new Date().getFullYear()}. All Rights Reserved.
         </footer>
       </div>
     );
@@ -366,12 +369,14 @@ export default function AdminPage() {
       {/* Top Admin App Header */}
       <header className="sticky top-0 z-40 bg-[#0e0e13]/95 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="w-8 h-8 rounded-full border-2 border-brand-crimson flex items-center justify-center font-headline text-lg font-bold text-white bg-brand-crimson/20">
-            C
-          </span>
+          <img 
+            src={gymBoneLogo} 
+            alt="GYM BONE Emblem" 
+            className="h-10 w-auto object-contain drop-shadow" 
+          />
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-headline text-2xl tracking-wider text-white">COREX</span>
+              <span className="font-headline text-2xl tracking-wider text-white">GYM BONE</span>
               <span className="text-[10px] font-bold tracking-widest text-brand-crimson uppercase px-2 py-0.5 rounded bg-brand-crimson/15 border border-brand-crimson/30">
                 OPERATIONS CONSOLE
               </span>
@@ -849,7 +854,7 @@ export default function AdminPage() {
                   Newsletter & Protocol Leads
                 </h3>
                 <p className="text-xs text-zinc-400">
-                  Subscribed to weekly COREX training protocols and workout insights.
+                  Subscribed to weekly GYM BONE training protocols and workout insights.
                 </p>
               </div>
               <span className="text-xs font-bold text-brand-crimson bg-brand-crimson/15 px-3 py-1 rounded-full border border-brand-crimson/30">
@@ -881,3 +886,4 @@ export default function AdminPage() {
     </div>
   );
 }
+

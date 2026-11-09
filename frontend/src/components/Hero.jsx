@@ -31,7 +31,7 @@ export default function Hero({ onOpenJoinModal, onOpenConsultModal }) {
       <div className="absolute -bottom-16 sm:-bottom-24 md:-bottom-32 lg:-bottom-44 xl:-bottom-52 left-1/2 -translate-x-[42%] lg:left-[51%] lg:-translate-x-[36%] xl:left-[51%] xl:-translate-x-[34%] z-10 flex justify-center pointer-events-none">
         <img 
           src={heroAthleteTransparent} 
-          alt="COREX Athlete Performing Heavy Dumbbell Row" 
+          alt="GYM BONE Athlete Performing Heavy Dumbbell Row" 
           className="h-[620px] sm:h-[720px] md:h-[820px] lg:h-[940px] xl:h-[1020px] w-auto max-w-none object-contain select-none pointer-events-none drop-shadow-[0_20px_45px_rgba(0,0,0,0.85)] filter contrast-[1.04] brightness-100 transition-transform duration-700 ease-out hover:scale-[1.02]"
         />
       </div>

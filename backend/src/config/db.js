@@ -120,7 +120,7 @@ const INITIAL_DATA = {
       features: [
         'Everything included in Open Floor',
         'Unlimited group coached classes (Power Hour, Engine, etc.)',
-        'COREX Training App access with logged lift history',
+        'GYM BONE Training App access with logged lift history',
         'Monthly physical progress & body composition check-in',
         'Priority booking window for all peak class slots'
       ]
@@ -157,7 +157,7 @@ const INITIAL_DATA = {
     {
       id: 3,
       question: 'How do I book a class?',
-      answer: 'You can book classes directly on this website or using the COREX Mobile App up to 7 days in advance. Live spot availability updates automatically so you always know when spots are open.'
+      answer: 'You can book classes directly on this website or using the GYM BONE Mobile App up to 7 days in advance. Live spot availability updates automatically so you always know when spots are open.'
     },
     {
       id: 4,
