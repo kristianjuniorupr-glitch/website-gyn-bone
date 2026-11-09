@@ -27,12 +27,12 @@ export default function Hero({ onOpenJoinModal, onOpenConsultModal }) {
       {/* Radial backlight glow behind athlete */}
       <div className="absolute bottom-16 left-1/2 -translate-x-[40%] w-[550px] h-[550px] bg-red-600/25 blur-[140px] pointer-events-none rounded-full" />
 
-      {/* 2. Athlete Cutout - Positioned exactly as reference: Anchored to bottom, large center-right */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-[42%] lg:left-[51%] lg:-translate-x-[36%] xl:left-[51%] xl:-translate-x-[34%] h-[75%] sm:h-[84%] md:h-[90%] lg:h-[95%] xl:h-[98%] max-h-[820px] z-10 flex items-end justify-center pointer-events-none">
+      {/* 2. Athlete Cutout - Lowered to thigh level to cleanly hide uneven bottom crop */}
+      <div className="absolute -bottom-16 sm:-bottom-24 md:-bottom-32 lg:-bottom-44 xl:-bottom-52 left-1/2 -translate-x-[42%] lg:left-[51%] lg:-translate-x-[36%] xl:left-[51%] xl:-translate-x-[34%] z-10 flex justify-center pointer-events-none">
         <img 
           src={heroAthleteTransparent} 
           alt="COREX Athlete Performing Heavy Dumbbell Row" 
-          className="h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_20px_45px_rgba(0,0,0,0.85)] filter contrast-[1.04] brightness-100 select-none pointer-events-none transition-transform duration-700 ease-out hover:scale-[1.02]"
+          className="h-[620px] sm:h-[720px] md:h-[820px] lg:h-[940px] xl:h-[1020px] w-auto max-w-none object-contain select-none pointer-events-none drop-shadow-[0_20px_45px_rgba(0,0,0,0.85)] filter contrast-[1.04] brightness-100 transition-transform duration-700 ease-out hover:scale-[1.02]"
         />
       </div>
 
