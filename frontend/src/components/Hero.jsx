@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, Flame, ShieldCheck, Dumbbell, Award } from 'lucide-react';
-import heroAthleteImg from '../assets/hero-athlete.jpg';
+import heroAthleteTransparent from '../assets/hero-athlete-transparent.png';
 
 export default function Hero({ onOpenJoinModal, onOpenConsultModal }) {
   return (
@@ -17,34 +17,35 @@ export default function Hero({ onOpenJoinModal, onOpenConsultModal }) {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-crimson/30 blur-[130px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-8 lg:pt-16">
-          {/* Left Hero Text Column with Athlete Spotlight */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-8 lg:pt-14">
+          {/* Left Hero Text Column with Large Transparent Athlete Cutout */}
           <div className="lg:col-span-8 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-[11px] font-bold tracking-widest uppercase text-zinc-200">
               <Flame className="w-3.5 h-3.5 text-brand-crimson" />
               STRENGTH & CONDITIONING FACILITY
             </div>
 
-            {/* Headline and Athlete Image Side-by-Side */}
+            {/* Headline and 50% Larger Transparent Athlete Side-by-Side */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 lg:gap-8">
-              <h1 className="font-headline text-6xl sm:text-7xl md:text-8xl lg:text-8xl xl:text-9xl tracking-tight leading-[0.88] uppercase text-white drop-shadow-sm select-none shrink-0">
+              <h1 className="font-headline text-6xl sm:text-7xl md:text-8xl xl:text-9xl tracking-tight leading-[0.88] uppercase text-white drop-shadow-sm select-none shrink-0">
                 FUEL BUILD<br />PERFORM
               </h1>
 
-              {/* Uploaded Athlete Hero Image */}
-              <div className="relative group shrink-0 w-48 sm:w-52 md:w-60 lg:w-64 aspect-[3/4] rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl bg-zinc-950 transition-all duration-300 hover:border-brand-crimson hover:shadow-brand-crimson/20">
+              {/* Transparent Athlete (No Background, 50% Larger, Blended directly with Website) */}
+              <div className="relative shrink-0 flex items-center justify-center -my-4 sm:-my-6 lg:-my-8 group">
+                {/* Subtle crimson aura behind athlete */}
+                <div className="absolute inset-0 bg-brand-crimson/25 blur-3xl rounded-full scale-90 pointer-events-none transition-opacity duration-700 group-hover:bg-brand-crimson/40"></div>
+
                 <img 
-                  src={heroAthleteImg} 
-                  alt="COREX Athlete Single-Arm Dumbbell Row" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  src={heroAthleteTransparent} 
+                  alt="COREX Athlete Performing Heavy Single-Arm Row" 
+                  className="relative z-10 w-72 sm:w-80 md:w-96 lg:w-[410px] xl:w-[460px] h-auto object-contain select-none pointer-events-none drop-shadow-[0_25px_35px_rgba(0,0,0,0.85)] drop-shadow-[0_0_30px_rgba(139,20,36,0.35)] hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div className="absolute top-3 left-3 bg-brand-crimson/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-[9px] font-bold tracking-widest uppercase text-white shadow-md">
-                  ATHLETE INTENSITY
-                </div>
-                <div className="absolute bottom-3 left-3 right-3 text-left">
-                  <span className="text-[10px] text-zinc-300 font-semibold uppercase tracking-wider block">HEAVY SINGLE-ARM ROW</span>
-                  <span className="text-xs font-bold text-white uppercase">45KG &bull; HYPERTROPHY</span>
+
+                {/* Floating Athlete Stat Pill */}
+                <div className="absolute -bottom-2 sm:bottom-2 right-0 sm:right-4 z-20 bg-black/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-brand-crimson/50 text-[10px] font-bold tracking-wider uppercase text-zinc-200 shadow-2xl flex items-center gap-1.5 select-none pointer-events-none">
+                  <Flame className="w-3.5 h-3.5 text-brand-crimson shrink-0" />
+                  <span>DUMBBELL ROW &bull; 45KG</span>
                 </div>
               </div>
             </div>
