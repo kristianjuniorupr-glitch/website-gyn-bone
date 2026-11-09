@@ -31,6 +31,14 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// 404 handler for unknown API routes
+app.use('/api', (req, res) => {
+  res.status(404).json({
+    success: false,
+    message: `API endpoint ${req.method} ${req.originalUrl} not found`
+  });
+});
+
 // Optional: Serve frontend build in production if present
 const frontendDist = path.join(__dirname, '../../frontend/dist');
 const fs = require('fs');

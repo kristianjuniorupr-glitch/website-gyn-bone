@@ -20,6 +20,7 @@ router.post('/schedules/book', bookClass);
 router.delete('/schedules/booking/:id', cancelBooking);
 
 // Memberships
+router.get('/memberships', getPlans);
 router.get('/memberships/plans', getPlans);
 router.post('/memberships/join', joinPlan);
 
