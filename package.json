@@ -1,0 +1,26 @@
+{
+  "name": "corex-strength-and-conditioning",
+  "version": "1.0.0",
+  "description": "Fullstack Strength & Conditioning Gym Platform (Frontend React + Tailwind, Backend Express REST API)",
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "dev:backend": "node --watch backend/src/server.js",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "cd frontend && npm run build",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "npm run install:backend && npm run install:frontend"
+  },
+  "keywords": [
+    "gym",
+    "fitness",
+    "react",
+    "tailwind",
+    "express",
+    "fullstack"
+  ],
+  "author": "COREX Team",
+  "license": "ISC"
+}
+

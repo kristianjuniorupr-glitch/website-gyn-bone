@@ -1,0 +1,293 @@
+const fs = require('fs');
+const path = require('path');
+
+const DB_PATH = path.join(__dirname, '../../data/gym_data.json');
+
+const INITIAL_DATA = {
+  schedules: [
+    // MON
+    { id: 'mon-1', day: 'MON', time: '06:00', name: 'Power Hour', coach: 'Ned Chen', category: 'Strength', totalSpots: 12, bookedSpots: 10, description: 'Barbell strength & heavy compound movements.' },
+    { id: 'mon-2', day: 'MON', time: '08:30', name: 'Engine Room', coach: 'Marcus Vance', category: 'Conditioning', totalSpots: 15, bookedSpots: 10, description: 'Rowers, ski-ergs, and high-intensity interval conditioning.' },
+    { id: 'mon-3', day: 'MON', time: '10:00', name: 'Barbell Basics', coach: 'Ned Chen', category: 'Strength', totalSpots: 12, bookedSpots: 4, description: 'Form refinement, deadlift, squat, and bench mechanics.' },
+    { id: 'mon-4', day: 'MON', time: '12:30', name: 'Boxing Rounds', coach: 'Diego Ortiz', category: 'Cardio', totalSpots: 10, bookedSpots: 8, description: 'Heavy bag rounds and footwork drills.' },
+    { id: 'mon-5', day: 'MON', time: '14:00', name: 'Restore', coach: 'Frank Reyes', category: 'Recovery', totalSpots: 15, bookedSpots: 10, description: 'Deep tissue release, mobility routines, and joint care.' },
+    { id: 'mon-6', day: 'MON', time: '17:30', name: 'Hypertrophy Upper', coach: 'Marcus Vance', category: 'Hypertrophy', totalSpots: 14, bookedSpots: 12, description: 'Upper body hypertrophy split with calculated volume.' },
+    { id: 'mon-7', day: 'MON', time: '19:00', name: 'Night Grinders', coach: 'Diego Ortiz', category: 'Conditioning', totalSpots: 16, bookedSpots: 14, description: 'High tempo circuit to cap off Monday strong.' },
+
+    // TUE
+    { id: 'tue-1', day: 'TUE', time: '06:00', name: 'Olympic Lifting', coach: 'Diego Ortiz', category: 'Olympic', totalSpots: 10, bookedSpots: 7, description: 'Snatch and Clean & Jerk technique breakdown.' },
+    { id: 'tue-2', day: 'TUE', time: '08:30', name: 'Power Hour', coach: 'Ned Chen', category: 'Strength', totalSpots: 12, bookedSpots: 9, description: 'Squat focus, progressive overload cycle.' },
+    { id: 'tue-3', day: 'TUE', time: '11:00', name: 'Hypertrophy Lower', coach: 'Marcus Vance', category: 'Hypertrophy', totalSpots: 14, bookedSpots: 8, description: 'Quad, hamstring, and glute volume building.' },
+    { id: 'tue-4', day: 'TUE', time: '16:00', name: 'Engine Room', coach: 'Marcus Vance', category: 'Conditioning', totalSpots: 15, bookedSpots: 11, description: 'Functional aerobic threshold test.' },
+    { id: 'tue-5', day: 'TUE', time: '18:30', name: 'Boxing Rounds', coach: 'Diego Ortiz', category: 'Cardio', totalSpots: 10, bookedSpots: 6, description: 'Mitt work, combination pacing, and core.' },
+
+    // WED
+    { id: 'wed-1', day: 'WED', time: '06:00', name: 'Engine Room', coach: 'Marcus Vance', category: 'Conditioning', totalSpots: 15, bookedSpots: 12, description: 'Midweek metabolic flush and high volume.' },
+    { id: 'wed-2', day: 'WED', time: '09:00', name: 'Barbell Basics', coach: 'Ned Chen', category: 'Strength', totalSpots: 12, bookedSpots: 5, description: 'Overhead press and hinge mechanics.' },
+    { id: 'wed-3', day: 'WED', time: '12:30', name: 'Restore & Mobilize', coach: 'Frank Reyes', category: 'Recovery', totalSpots: 15, bookedSpots: 9, description: 'Spine, hips, and shoulder decompression.' },
+    { id: 'wed-4', day: 'WED', time: '17:30', name: 'Power Hour', coach: 'Ned Chen', category: 'Strength', totalSpots: 12, bookedSpots: 11, description: 'Deadlift day with video feedback cues.' },
+    { id: 'wed-5', day: 'WED', time: '19:00', name: 'Conditioning Lab', coach: 'Marcus Vance', category: 'Conditioning', totalSpots: 14, bookedSpots: 10, description: 'Zone 2 & Zone 4 mixed intervals.' },
+
+    // THU
+    { id: 'thu-1', day: 'THU', time: '06:00', name: 'Hypertrophy Full Body', coach: 'Marcus Vance', category: 'Hypertrophy', totalSpots: 14, bookedSpots: 10, description: 'Time under tension and mechanical drop-sets.' },
+    { id: 'thu-2', day: 'THU', time: '08:30', name: 'Olympic Lifting', coach: 'Diego Ortiz', category: 'Olympic', totalSpots: 10, bookedSpots: 8, description: 'Barbell cycling and drop catches.' },
+    { id: 'thu-3', day: 'THU', time: '12:30', name: 'Boxing Rounds', coach: 'Diego Ortiz', category: 'Cardio', totalSpots: 10, bookedSpots: 9, description: 'Speed & reaction drill rounds.' },
+    { id: 'thu-4', day: 'THU', time: '17:30', name: 'Engine Room', coach: 'Marcus Vance', category: 'Conditioning', totalSpots: 15, bookedSpots: 13, description: 'Sled pushes, assault bikes, and kettlebells.' },
+    { id: 'thu-5', day: 'THU', time: '19:00', name: 'Restore', coach: 'Frank Reyes', category: 'Recovery', totalSpots: 15, bookedSpots: 8, description: 'Myofascial release and breathwork.' },
+
+    // FRI
+    { id: 'fri-1', day: 'FRI', time: '06:00', name: 'Power Hour: Max Effort', coach: 'Ned Chen', category: 'Strength', totalSpots: 12, bookedSpots: 11, description: 'Test weekly progression in heavy compounds.' },
+    { id: 'fri-2', day: 'FRI', time: '09:00', name: 'Engine Room', coach: 'Marcus Vance', category: 'Conditioning', totalSpots: 15, bookedSpots: 12, description: 'Team endurance challenge.' },
+    { id: 'fri-3', day: 'FRI', time: '12:30', name: 'Barbell Basics', coach: 'Ned Chen', category: 'Strength', totalSpots: 12, bookedSpots: 6, description: 'Fundamental lifts check-in and accessory work.' },
+    { id: 'fri-4', day: 'FRI', time: '17:30', name: 'Friday Night Fight', coach: 'Diego Ortiz', category: 'Cardio', totalSpots: 12, bookedSpots: 10, description: 'Combative conditioning & boxing circuits.' },
+    { id: 'fri-5', day: 'FRI', time: '19:00', name: 'Cooldown & Chill', coach: 'Frank Reyes', category: 'Recovery', totalSpots: 15, bookedSpots: 7, description: 'End of week restorative stretching.' },
+
+    // SAT
+    { id: 'sat-1', day: 'SAT', time: '07:30', name: 'Saturday Throwdown', coach: 'Ned Chen & Marcus Vance', category: 'Strength', totalSpots: 20, bookedSpots: 18, description: 'Partner workout pushing barbell and aerobic work.' },
+    { id: 'sat-2', day: 'SAT', time: '10:00', name: 'Olympic Weightlifting', coach: 'Diego Ortiz', category: 'Olympic', totalSpots: 10, bookedSpots: 9, description: 'Technical review with platform coaches.' },
+    { id: 'sat-3', day: 'SAT', time: '12:00', name: 'Active Recovery & Mobility', coach: 'Frank Reyes', category: 'Recovery', totalSpots: 15, bookedSpots: 8, description: 'Joint prep and flow for athletes.' },
+
+    // SUN
+    { id: 'sun-1', day: 'SUN', time: '08:30', name: 'Sunday Open Gym & Cues', coach: 'Ned Chen', category: 'Open', totalSpots: 18, bookedSpots: 12, description: 'Coach on the floor for form checks and weak points.' },
+    { id: 'sun-2', day: 'SUN', time: '11:00', name: 'Total Body Engine', coach: 'Marcus Vance', category: 'Conditioning', totalSpots: 15, bookedSpots: 9, description: 'Aerobic recovery pace and engine preservation.' },
+    { id: 'sun-3', day: 'SUN', time: '14:00', name: 'Deep Reset', coach: 'Frank Reyes', category: 'Recovery', totalSpots: 16, bookedSpots: 10, description: 'Preparing your central nervous system for next week.' }
+  ],
+
+  trainers: [
+    {
+      id: 'ned-chen',
+      name: 'Ned Chen',
+      role: 'Head of Programming',
+      specialty: 'Barbell Fundamentals & Periodization',
+      experience: '12+ Years Coaching',
+      bio: 'Former national powerlifting competitor dedicated to bulletproof strength mechanics and calculated linear progression.',
+      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBS9RsVqIAUuJhUra4t7xxD5LIVE8hdRGDjuP2ZdWDsd38eJJdSF0pDjft4s_AGe5YUIl2Pc2I_vK70IK_yrYdWqHs-8hqLS7qb9cS0KLPj39MnJpgpE-el34fuS-5adhgwttYw6cnigqnzVl9A7xOAuGpv77fxN-8AixM5x_myKEcrW6rlSfhTdmtCnCMemC0apH4hvsmPVjAy_on2O9luzDhKXZGNMQC61WB1UPll'
+    },
+    {
+      id: 'marcus-vance',
+      name: 'Marcus Vance',
+      role: 'Conditioning Lead',
+      specialty: 'Aerobic Capacity & Functional Hypertrophy',
+      experience: '9 Years Coaching',
+      bio: 'Collegiate track athlete turned strength coach. Marcus programs high-output engines that do not compromise strength.',
+      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCZ2cRYhZdiqHjl179AMjsigS2zqsxcZIB6o0-BLAKCdS1MuoZcRuT33fWFPYAiDNMs7xWUf0ldsgIK1PNb69TXzgv00aKst2hQ8EwnhaMKZJ7fOzKLpZILD2W81uqBntmYHUYU35nx0jA3A_L0OdOA7HbuB2KtUgZOAF53qCncMCQcz116uIsPZVMy7vDyTE8W4lhFBQzsX7hYGKdpOtqP9-zwyjwOqf72CBDwRRle'
+    },
+    {
+      id: 'diego-ortiz',
+      name: 'Diego Ortiz',
+      role: 'Olympic Weightlifting',
+      specialty: 'Snatch, Clean & Jerk, Explosive Power',
+      experience: '8 Years Coaching',
+      bio: 'USAW Level 2 Certified Coach obsessed with bar path speed, ankle-hip mobility, and barbell precision.',
+      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC8eQNvZPO4RkddihkfPruAh6Hf3hfOtx3wlpDdAzZuE-falApKrwl5aKas3a0DSLkssE0Y1TWQhWnMGPegyJH4k8736kPWdm6JSRlk-zgSQeqWkn2xH3LQcrXtelQoMazcPTIbUermPCCpwgEML21Wb7H2fCPjJ-d9V-WuLMjBLmCOwPC4TPASm8ADxFqQN-JDX1EVmjR-jREI_S4gDoVDKk6EwtH_gHHDhgon6mFa'
+    },
+    {
+      id: 'frank-reyes',
+      name: 'Frank Reyes',
+      role: 'Mobility & Recovery',
+      specialty: 'Prehab, Posture Correction & Joint Health',
+      experience: '10 Years Coaching',
+      bio: 'Specialist in functional range conditioning, restoring movement freedoms and keeping heavy lifters injury-free year-round.',
+      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD-zT0EfctECeVS2i3yyhURmjsQJ03MCmjkj9lG4cmiTsOeRRT4P8yiemPmklj8L8jWF3Lj5pM9Hp0kUhoAT7tmis-dp2D1r3GPUWKorwnWn2DOJ2pHWsKUOT_AaiUTgFY5d89jZSRbirqPBIY36WO9U8TPZtC3UNmL_AoEIsYmTcMPStAImy9-5IvyvjEbTu4yFa_f1MHfmpeHOQJw7K5UDpntzZyVtwX1KDOiqZlL'
+    }
+  ],
+
+  plans: [
+    {
+      id: 'open-floor',
+      name: 'OPEN FLOOR',
+      monthlyPrice: 39,
+      yearlyPrice: 390,
+      periodMonthly: '/mo',
+      periodYearly: '/yr',
+      highlight: false,
+      features: [
+        'Full gym access during all open hours',
+        'Open hours 5am - 11pm daily + private lockers',
+        'One free intake assessment & movement screen',
+        'Free high-speed WiFi and recovery lounge access'
+      ]
+    },
+    {
+      id: 'all-access',
+      name: 'ALL ACCESS',
+      badge: 'MOST POPULAR',
+      monthlyPrice: 79,
+      yearlyPrice: 790,
+      periodMonthly: '/mo',
+      periodYearly: '/yr',
+      highlight: true,
+      features: [
+        'Everything included in Open Floor',
+        'Unlimited group coached classes (Power Hour, Engine, etc.)',
+        'COREX Training App access with logged lift history',
+        'Monthly physical progress & body composition check-in',
+        'Priority booking window for all peak class slots'
+      ]
+    },
+    {
+      id: 'coached',
+      name: 'COACHED',
+      monthlyPrice: 189,
+      yearlyPrice: 1890,
+      periodMonthly: '/mo',
+      periodYearly: '/yr',
+      highlight: false,
+      features: [
+        'Everything included in All Access',
+        'Weekly 1-on-1 private coaching with senior coach',
+        'Tailored biomechanical & athlete programming',
+        'Custom nutrition & macro protocol with weekly adjustments',
+        'Dedicated 24/7 direct coach chat access'
+      ]
+    }
+  ],
+
+  faqs: [
+    {
+      id: 1,
+      question: 'Can I join without experience?',
+      answer: 'Yes, absolutely. Over 40% of our members started with zero barbell or gym experience. Every new member begins with a complimentary 45-minute intake assessment where a coach reviews your injury history, tests movement patterns, and sets you up with safe initial loads.'
+    },
+    {
+      id: 2,
+      question: 'Can I cancel any time?',
+      answer: 'Yes! We stand firmly behind "No Contracts, No Excuses". All our monthly memberships can be paused or cancelled at any time through our member portal or front desk with just 7 days notice prior to your next billing cycle.'
+    },
+    {
+      id: 3,
+      question: 'How do I book a class?',
+      answer: 'You can book classes directly on this website or using the COREX Mobile App up to 7 days in advance. Live spot availability updates automatically so you always know when spots are open.'
+    },
+    {
+      id: 4,
+      question: 'Do you offer day passes?',
+      answer: 'Yes, single day passes are available for $20 (includes full open floor access) or $30 for a drop-in coached class. If you join on the same day, your day pass fee is credited toward your first month!'
+    },
+    {
+      id: 5,
+      question: 'Is there parking and are there showers?',
+      answer: 'Yes! We have 40 dedicated on-site parking spaces directly in front of the facility. Inside, we provide private rain showers, luxury changing rooms, hairdryers, and complimentary lockers.'
+    },
+    {
+      id: 6,
+      question: 'What should I bring on day one?',
+      answer: 'Just bring comfortable training clothes, flat-soled athletic shoes (or lifting shoes), a water bottle, and a small sweat towel. We provide all lifting chalk, belts, bands, and equipment on the floor.'
+    }
+  ],
+
+  bookings: [
+    {
+      id: 'CRX-9182',
+      classId: 'mon-1',
+      className: 'Power Hour',
+      coach: 'Ned Chen',
+      day: 'MON',
+      time: '06:00',
+      userName: 'David Miller',
+      userEmail: 'david.miller@example.com',
+      userPhone: '+880 1711 002233',
+      createdAt: '2026-11-09T08:00:00.000Z',
+      status: 'confirmed'
+    },
+    {
+      id: 'CRX-9183',
+      classId: 'mon-2',
+      className: 'Engine Room',
+      coach: 'Marcus Vance',
+      day: 'MON',
+      time: '08:30',
+      userName: 'Elena Rostova',
+      userEmail: 'elena.rostova@example.com',
+      userPhone: '+880 1711 445566',
+      createdAt: '2026-11-09T08:15:00.000Z',
+      status: 'confirmed'
+    }
+  ],
+
+  memberships: [
+    {
+      id: 'MBR-101',
+      name: 'Sameer Hossain',
+      email: 'sameer.h@example.com',
+      phone: '+880 1700 998877',
+      planId: 'all-access',
+      planName: 'ALL ACCESS',
+      billingCycle: 'monthly',
+      status: 'active',
+      joinedAt: '2026-06-01T10:00:00.000Z'
+    },
+    {
+      id: 'MBR-102',
+      name: 'Ali Khan',
+      email: 'ali.khan@example.com',
+      phone: '+880 1700 887766',
+      planId: 'coached',
+      planName: 'COACHED',
+      billingCycle: 'yearly',
+      status: 'active',
+      joinedAt: '2025-05-15T12:00:00.000Z'
+    }
+  ],
+
+  subscribers: [
+    { email: 'member1@corex.fit', subscribedAt: '2026-10-01T10:00:00.000Z' },
+    { email: 'alex.fitness@gmail.com', subscribedAt: '2026-10-15T14:30:00.000Z' },
+    { email: 'sarah.athlete@yahoo.com', subscribedAt: '2026-11-02T09:20:00.000Z' }
+  ],
+
+  consultations: [
+    {
+      id: 'CNS-001',
+      trainerId: 'ned-chen',
+      trainerName: 'Ned Chen',
+      name: 'Rashid Khan',
+      email: 'rashid@example.com',
+      phone: '+880 1722 334455',
+      goal: 'Squat depth & lower back pain recovery',
+      date: '2026-11-12',
+      status: 'pending'
+    }
+  ]
+};
+
+// Ensure data folder and file exists
+function initDB() {
+  const dir = path.dirname(DB_PATH);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+
+  if (!fs.existsSync(DB_PATH)) {
+    fs.writeFileSync(DB_PATH, JSON.stringify(INITIAL_DATA, null, 2), 'utf-8');
+  }
+}
+
+function readData() {
+  initDB();
+  try {
+    const raw = fs.readFileSync(DB_PATH, 'utf-8');
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error('Error reading JSON DB, restoring defaults:', err);
+    fs.writeFileSync(DB_PATH, JSON.stringify(INITIAL_DATA, null, 2), 'utf-8');
+    return INITIAL_DATA;
+  }
+}
+
+function writeData(data) {
+  initDB();
+  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2), 'utf-8');
+}
+
+function resetData() {
+  writeData(INITIAL_DATA);
+  return INITIAL_DATA;
+}
+
+module.exports = {
+  readData,
+  writeData,
+  resetData
+};
+
