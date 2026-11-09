@@ -9,18 +9,18 @@ Aplikasi Web Fullstack Modern untuk Gym & Pusat Kebugaran **COREX Strength and C
 ### 🏋️ Frontend (User Interface)
 - **Desain Presisi & Responsif**: Mengikuti identitas visual COREX dengan palet warna Crimson (`#8b1424`), Dark (`#0e0e11`), font condensed *Bebas Neue* untuk headline dan *Inter* untuk teks tubuh.
 - **Header & Navigasi Interaktif**: Sticky navigation, mobile hamburger drawer, navigasi anchor halus (*smooth scrolling*), tombol *Join Now*, dan akses cepat ke *Admin Portal*.
-- **Hero Section Dinamis**: Header visual bertenaga, badge fasilitas, avatar stack bukti sosial (*750+ members*), dan CTA *Join The Tribe*.
-- **Infinite Running Ticker**: Marquee animasi berulang (*Strength, Conditioning, Hypertrophy, Mobility, Olympic Lifting, Boxing, Recovery*) dengan efek jeda saat kursor diarahkan (*hover pause*).
+- **Hero Section Presisi Sesuai Foto Referensi**: 
+  - Headline raksasa bertingkat `FUEL BUILD PERFORM` (*Bebas Neue*, putih pekat).
+  - Foto atlet dumbbell row transparan (*no background*, 50% lebih besar) diposisikan di tengah-kanan dengan anchoring langsung setinggi paha (*thigh level*) di atas running ticker.
+  - Social proof stack `1K+ MEMBERS / TRAIN WITH US` di kanan atas, serta callout card `THE ESSENTIAL INGREDIENT...` dengan tombol `BECOME A MEMBER` di kanan bawah.
+- **Infinite Running Ticker**: Marquee animasi berulang (*Strength ○ Conditioning ○ Hypertrophy ○ Mobility ○ Olympic Lifting ○ Boxing ○ Recovery*) dengan simbol pemisah lingkaran cincin `○`.
 - **Ethos & About Us**: Filosofi latihan berfokus pada hasil nyata (*Built for the work, not the mirror*) beserta tag metadata resmi sejak 2014.
-- **Discipline Carousel**: 4 pilar latihan (Strength, HIIT & Conditioning, Hypertrophy, 1-on-1 Coaching) dengan ikon dan navigasi slide.
-- **Jadwal Kelas Mingguan (Real-time Schedule)**:
-  - Tab pemilih hari: **MON, TUE, WED, THU, FRI, SAT, SUN**.
-  - Filter kategori latihan (Strength, Conditioning, Hypertrophy, Cardio, Olympic, Recovery).
-  - Indikator ketersediaan slot dinamis (*Live Spots Remaining*, peringatan kuota menipis, atau *Class Full*).
-  - **Sistem Booking Interaktif**: Klik **BOOK** pada sesi apa pun untuk membuka formulir pemesanan, memasukkan nama & kontak, dan langsung mendapatkan **Kode Tiket Resmi (contoh: `CRX-8424`)** dengan pengurangan sisa slot secara real-time.
-- **Profil Pelatih (Trainers)**: Ned Chen, Marcus Vance, Diego Ortiz, dan Frank Reyes lengkap dengan foto, keahlian, pengalaman, serta tombol konsultasi 1-on-1.
-- **Transformasi Atlet**: Perbandingan interaktif Sebelum & Sesudah (*Before & After*) disertai metrik penurunan lemak dan peningkatan beban angkatan.
-- **Paket Membership & Toggle Penagihan**:
+- **Discipline Carousel**: 4 pilar latihan (Strength, HIIT & Conditioning, Hypertrophy, 1-on-1 Coaching) dengan ikon dan modal detail program latihan.
+- **Transformasi Atlet (Before & After Real)**:
+  - Menggunakan foto transformasi nyata anggota COREX gym (Sameer Hossain, -18kg Body Fat, +65kg Deadlift).
+  - Mendukung **2 Mode Tampilan**: Mode **Side by Side** (kartu berdampingan dengan badge Before & After) serta Mode **Interactive Slider** (slider geser kiri-kanan interaktif secara real-time).
+- **Paket Membership & Interaktivitas Warna Dinamis**:
+  - **Dynamic Card Hover & Touch**: Ketika kursor atau sentuhan layar menyentuh kartu mana pun (misal Open Floor atau Coached), kartu tersebut bertransisi menjadi warna merah *brand crimson*, dan kartu All Access ikut berubah menjadi putih bersih.
   - Pilihan pembayaran: **Bulanan (Monthly)** atau **Tahunan (Yearly - Hemat 20%)**.
   - 3 Tingkatan paket: **Open Floor** ($39/bln), **All Access** ($79/bln - Paling Populer), dan **Coached** ($189/bln).
   - Modal registrasi anggota yang menerbitkan kartu member digital instan (*Member ID Card*).
