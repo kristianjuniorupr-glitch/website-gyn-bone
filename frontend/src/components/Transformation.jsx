@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeftRight, Columns, Sparkles, TrendingDown, Dumbbell, Award } from 'lucide-react';
+import { Columns, ArrowLeftRight, Sparkles, TrendingDown, Dumbbell, Award } from 'lucide-react';
 import beforeImg from '../assets/transformation-before.jpg';
 import afterImg from '../assets/transformation-after.jpg';
 
@@ -82,7 +82,7 @@ export default function Transformation() {
         </div>
 
         {/* View Switcher: Side-by-Side vs Interactive Slider */}
-        <div className="inline-flex items-center gap-1 p-1 bg-black/60 rounded-full border border-white/10 mb-8 backdrop-blur-md">
+        <div className="inline-flex items-center gap-1 p-1 bg-white/5 rounded-full border border-white/10 mb-10 backdrop-blur-md">
           <button
             onClick={() => setViewMode('side-by-side')}
             className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all ${
@@ -107,52 +107,59 @@ export default function Transformation() {
           </button>
         </div>
 
-        {/* Transformation Display */}
+        {/* Transformation Display - Clean Grid without black shape box */}
         {viewMode === 'side-by-side' ? (
-          /* Side-by-Side Cards */
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto bg-black/40 p-4 sm:p-6 rounded-3xl border border-white/10 shadow-2xl backdrop-blur-md">
-            
-            {/* Before Frame */}
-            <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-zinc-950 border border-white/10 group shadow-lg">
-              <img 
-                alt={`${current.author} before transformation`} 
-                className="w-full h-full object-cover object-center filter contrast-[0.95] group-hover:scale-105 transition-transform duration-700" 
-                src={beforeImg} 
-              />
-              <div className="absolute top-4 left-4 z-10">
-                <span className="bg-brand-crimson text-white text-[11px] font-bold uppercase tracking-widest px-3.5 py-1 rounded-full shadow-lg border border-white/20">
-                  BEFORE
-                </span>
+          /* Side-by-Side Clean Grid: Completely static on cursor, no crop */
+          <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+              
+              {/* Before Frame: Static, Uncropped, Full Height */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  alt="Before Transformation" 
+                  className="w-full h-auto object-contain block select-none pointer-events-none transform-none" 
+                  src={beforeImg} 
+                />
+                <div className="absolute top-4 left-4 z-10 pointer-events-none">
+                  <span className="bg-brand-crimson text-white text-[11px] font-bold uppercase tracking-widest px-3.5 py-1 rounded-full shadow-lg border border-white/20">
+                    BEFORE
+                  </span>
+                </div>
               </div>
-              <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-md p-3 rounded-xl text-left text-zinc-300 text-xs font-medium border border-white/10">
+
+              {/* After Frame: Static, Uncropped, Full Height */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  alt="After Transformation" 
+                  className="w-full h-auto object-contain block select-none pointer-events-none transform-none" 
+                  src={afterImg} 
+                />
+                <div className="absolute top-4 right-4 z-10 pointer-events-none">
+                  <span className="bg-emerald-500 text-white text-[11px] font-bold uppercase tracking-widest px-3.5 py-1 rounded-full shadow-lg border border-emerald-400/40">
+                    AFTER (WEEK 22)
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Clean Notes Below Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-5 text-xs font-medium text-zinc-400">
+              <div className="text-center sm:text-left px-2">
+                <span className="text-brand-crimson font-bold uppercase tracking-wider block mb-1">Baseline Phase</span>
                 {current.beforeNotes}
               </div>
-            </div>
-
-            {/* After Frame */}
-            <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-zinc-950 border border-brand-crimson/40 group shadow-lg shadow-brand-crimson/10">
-              <img 
-                alt={`${current.author} after transformation`} 
-                className="w-full h-full object-cover object-center filter contrast-105 group-hover:scale-105 transition-transform duration-700" 
-                src={afterImg} 
-              />
-              <div className="absolute top-4 right-4 z-10">
-                <span className="bg-emerald-500/90 text-white text-[11px] font-bold uppercase tracking-widest px-3.5 py-1 rounded-full shadow-lg border border-emerald-400/40">
-                  AFTER (WEEK 22)
-                </span>
-              </div>
-              <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-md p-3 rounded-xl text-left text-white text-xs font-semibold border border-brand-crimson/30 flex justify-between items-center">
-                <span className="text-zinc-200">{current.afterNotes}</span>
-                <span className="text-emerald-400 font-extrabold tracking-wider">{current.stat1}</span>
+              <div className="text-center sm:text-right px-2">
+                <span className="text-emerald-400 font-bold uppercase tracking-wider block mb-1">Results (Week 22)</span>
+                {current.afterNotes}
               </div>
             </div>
-
           </div>
         ) : (
-          /* Interactive Comparison Slider */
-          <div className="max-w-xl mx-auto bg-black/50 p-4 sm:p-6 rounded-3xl border border-white/10 shadow-2xl backdrop-blur-md">
+          /* Interactive Comparison Slider: Clean, Uncropped, Static */
+          <div className="max-w-md mx-auto">
             <div 
-              className="relative aspect-[3/4] rounded-2xl overflow-hidden select-none cursor-ew-resize border border-white/15"
+              className="relative aspect-[511/1024] rounded-2xl overflow-hidden select-none cursor-ew-resize shadow-2xl"
               onMouseMove={handleSliderMove}
               onTouchMove={handleTouchMove}
             >
@@ -160,7 +167,7 @@ export default function Transformation() {
               <img 
                 src={afterImg} 
                 alt="After Transformation" 
-                className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+                className="absolute inset-0 w-full h-full object-contain pointer-events-none"
               />
 
               {/* Before Image (Clipped overlay) */}
@@ -171,7 +178,7 @@ export default function Transformation() {
                 <img 
                   src={beforeImg} 
                   alt="Before Transformation" 
-                  className="absolute inset-0 w-full h-full object-cover object-center max-w-none"
+                  className="absolute inset-0 w-full h-full object-contain max-w-none"
                   style={{ width: '100%', height: '100%' }}
                 />
               </div>
