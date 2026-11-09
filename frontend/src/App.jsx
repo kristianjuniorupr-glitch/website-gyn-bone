@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Ticker from './components/Ticker';
@@ -16,16 +17,15 @@ import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
 import JoinModal from './components/JoinModal';
 import ConsultationModal from './components/ConsultationModal';
-import AdminDashboardModal from './components/AdminDashboardModal';
 import Toast from './components/Toast';
+import AdminPage from './pages/AdminPage';
 
-export default function App() {
+function PublicLandingPage() {
   const [selectedSession, setSelectedSession] = useState(null);
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [joinPlanConfig, setJoinPlanConfig] = useState({ planId: 'all-access', billing: 'monthly' });
   const [consultModalOpen, setConsultModalOpen] = useState(false);
   const [consultTrainer, setConsultTrainer] = useState(null);
-  const [adminModalOpen, setAdminModalOpen] = useState(false);
   const [scheduleRefreshKey, setScheduleRefreshKey] = useState(0);
   const [toast, setToast] = useState(null);
 
@@ -61,13 +61,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#0e0e11] text-zinc-100 selection:bg-brand-crimson selection:text-white">
-      {/* Navigation */}
-      <Navbar 
-        onOpenJoinModal={() => handleOpenJoin('all-access')} 
-        onOpenAdminModal={() => setAdminModalOpen(true)} 
-      />
+      {/* Public Navbar - Zero Admin buttons, purely professional */}
+      <Navbar onOpenJoinModal={() => handleOpenJoin('all-access')} />
 
-      {/* Main Page Flow */}
+      {/* Main Public Page Content */}
       <main>
         <Hero 
           onOpenJoinModal={handleOpenJoin} 
@@ -110,12 +107,10 @@ export default function App() {
         />
       </main>
 
-      {/* Footer */}
-      <Footer 
-        onOpenAdminModal={() => setAdminModalOpen(true)} 
-      />
+      {/* Public Footer */}
+      <Footer />
 
-      {/* Modals */}
+      {/* User Modals */}
       {selectedSession && (
         <BookingModal
           session={selectedSession}
@@ -141,15 +136,26 @@ export default function App() {
         />
       )}
 
-      {adminModalOpen && (
-        <AdminDashboardModal
-          onClose={() => setAdminModalOpen(false)}
-          onDataChanged={() => setScheduleRefreshKey((prev) => prev + 1)}
-        />
-      )}
-
       {/* Toast notifications */}
       <Toast toast={toast} onClose={() => setToast(null)} />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Public Visitor Landing Page */}
+        <Route path="/" element={<PublicLandingPage />} />
+
+        {/* Dedicated Admin Portal with Custom Login Endpoint */}
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/login" element={<AdminPage />} />
+
+        {/* Fallback route */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

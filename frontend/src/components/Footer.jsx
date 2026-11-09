@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Footer({ onOpenAdminModal }) {
+export default function Footer() {
   const scrollTo = (id) => {
     const el = document.querySelector(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -57,8 +57,8 @@ export default function Footer({ onOpenAdminModal }) {
                 </button>
               </li>
               <li>
-                <button onClick={onOpenAdminModal} className="text-brand-crimson hover:underline text-[11px] font-semibold cursor-pointer">
-                  Staff Admin Panel &rarr;
+                <button onClick={() => scrollTo('#faq')} className="hover:text-white transition cursor-pointer">
+                  FAQ & Support
                 </button>
               </li>
             </ul>

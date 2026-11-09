@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Menu, X, Shield, Calendar, Sparkles } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
-export default function Navbar({ onOpenJoinModal, onOpenAdminModal }) {
+export default function Navbar({ onOpenJoinModal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -54,19 +54,8 @@ export default function Navbar({ onOpenJoinModal, onOpenAdminModal }) {
           ))}
         </nav>
 
-        {/* Header Actions */}
+        {/* Header Actions - Pure Public Member Focus */}
         <div className="hidden sm:flex items-center gap-3">
-          {/* Admin Dashboard trigger */}
-          <button
-            onClick={onOpenAdminModal}
-            className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white px-3 py-2 rounded-full border border-white/10 hover:border-white/30 transition text-[11px] font-semibold tracking-wider uppercase bg-white/5"
-            title="Open Admin & Live Booking Metrics"
-          >
-            <Shield className="w-3.5 h-3.5 text-brand-crimson" />
-            <span className="hidden xl:inline">ADMIN</span>
-          </button>
-
-          {/* Join Now CTA */}
           <button
             onClick={() => onOpenJoinModal('all-access')}
             className="bg-brand-crimson hover:bg-brand-crimsonHover text-white text-xs font-semibold uppercase tracking-widest px-6 py-2.5 rounded-full transition-all duration-300 shadow-lg shadow-brand-crimson/20 active:scale-95"
@@ -77,13 +66,6 @@ export default function Navbar({ onOpenJoinModal, onOpenAdminModal }) {
 
         {/* Mobile menu hamburger */}
         <div className="flex items-center gap-2 lg:hidden">
-          <button
-            onClick={onOpenAdminModal}
-            className="p-2 text-zinc-400 hover:text-white rounded-lg border border-white/10"
-            title="Admin"
-          >
-            <Shield className="w-4 h-4 text-brand-crimson" />
-          </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-zinc-300 hover:text-white p-2 focus:outline-none"
@@ -122,4 +104,3 @@ export default function Navbar({ onOpenJoinModal, onOpenAdminModal }) {
     </header>
   );
 }
-
