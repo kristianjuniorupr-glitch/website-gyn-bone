@@ -1,6 +1,6 @@
-# COREX — Strength & Conditioning (Fullstack Web App)
+# GYM BONE — Strength & Conditioning (Fullstack Web App)
 
-Aplikasi Web Fullstack Modern untuk Gym & Pusat Kebugaran **COREX Strength and Conditioning**, dibangun berdasarkan desain template landing page dengan integrasi Frontend (React 19, Tailwind CSS, Lucide Icons, Vite) dan Backend REST API (Node.js, Express 5, JSON Database persistent).
+Aplikasi Web Fullstack Modern untuk Gym & Pusat Kebugaran **GYM BONE Strength and Conditioning**, dibangun berdasarkan desain template landing page dengan integrasi Frontend (React 19, Tailwind CSS, Lucide Icons, Vite) dan Backend REST API (Node.js, Express 5, JSON Database persistent).
 
 ---
 
