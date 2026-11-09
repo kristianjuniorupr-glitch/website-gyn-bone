@@ -19,12 +19,11 @@ export default function Ticker() {
       <div className="ticker-track text-xs font-headline tracking-widest text-zinc-300 uppercase space-x-8">
         {loopList.map((item, index) => (
           <React.Fragment key={index}>
-            <span className="hover:text-brand-crimson transition-colors cursor-default">{item}</span>
-            <span className="text-brand-crimson select-none">•</span>
+            <span className="hover:text-brand-crimson transition-colors cursor-default tracking-widest">{item}</span>
+            <span className="text-zinc-500 font-bold select-none text-[11px]">○</span>
           </React.Fragment>
         ))}
       </div>
     </section>
   );
 }
-

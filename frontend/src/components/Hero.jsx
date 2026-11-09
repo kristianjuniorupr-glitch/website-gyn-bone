@@ -1,120 +1,123 @@
 import React from 'react';
-import { ArrowUpRight, Flame, ShieldCheck, Dumbbell, Award } from 'lucide-react';
+import { ArrowUpRight, Flame } from 'lucide-react';
 import heroAthleteTransparent from '../assets/hero-athlete-transparent.png';
 
 export default function Hero({ onOpenJoinModal, onOpenConsultModal }) {
   return (
-    <section className="relative bg-gradient-to-b from-[#800f1e] via-[#4d0711] to-[#0d0d10] text-white pt-10 pb-20 overflow-hidden" id="home">
-      {/* Background athlete silhouette/texture */}
+    <section 
+      className="relative w-full min-h-[640px] sm:min-h-[720px] lg:h-[780px] xl:h-[840px] bg-[#3a060d] text-white overflow-hidden flex flex-col justify-between select-none" 
+      id="home"
+    >
+      {/* 1. Dynamic Crimson Gradient Background with Diagonal Streaks */}
       <div 
-        className="absolute inset-0 opacity-25 mix-blend-screen pointer-events-none bg-cover bg-center" 
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuA7To7uxMRT0LDjGmSvoHj5aIozLcdfBQc9uF8urGT61DHc8DylMEgmYWWsIGqlTZGKmoG3AL0jUpZOEYJzzEdCnZGzs6_cS5vUiTwyukNADWn7_0nBYkd_Q6yaskzBBcM6mZDbMeWa598dbIhLPrp-EmCFVaCZ_Oq0s7y50fPrnUJCm0AYcHDCIoYCLd_vK-Z9_AGRrX607afZ6KSxy1HbFHH1L2jwGLohcnM3b7Od')"
+          background: 'radial-gradient(ellipse at 56% 42%, #8b1424 0%, #630c18 45%, #38060d 75%, #150204 100%)',
         }}
       />
-      
-      {/* Decorative gradient glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-crimson/30 blur-[130px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-8 lg:pt-14">
-          {/* Left Hero Text Column with Large Transparent Athlete Cutout */}
-          <div className="lg:col-span-8 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-[11px] font-bold tracking-widest uppercase text-zinc-200">
-              <Flame className="w-3.5 h-3.5 text-brand-crimson" />
-              STRENGTH & CONDITIONING FACILITY
+      {/* Subtle dynamic diagonal speed lines / texture matching reference */}
+      <div 
+        className="absolute inset-0 opacity-25 mix-blend-overlay pointer-events-none"
+        style={{
+          backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 35px, transparent 35px, transparent 110px)'
+        }}
+      />
+
+      {/* Radial backlight glow behind athlete */}
+      <div className="absolute bottom-16 left-1/2 -translate-x-[40%] w-[550px] h-[550px] bg-red-600/25 blur-[140px] pointer-events-none rounded-full" />
+
+      {/* 2. Athlete Cutout - Positioned exactly as reference: Anchored to bottom, large center-right */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-[42%] lg:left-[51%] lg:-translate-x-[36%] xl:left-[51%] xl:-translate-x-[34%] h-[75%] sm:h-[84%] md:h-[90%] lg:h-[95%] xl:h-[98%] max-h-[820px] z-10 flex items-end justify-center pointer-events-none">
+        <img 
+          src={heroAthleteTransparent} 
+          alt="COREX Athlete Performing Heavy Dumbbell Row" 
+          className="h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_20px_45px_rgba(0,0,0,0.85)] filter contrast-[1.04] brightness-100 select-none pointer-events-none transition-transform duration-700 ease-out hover:scale-[1.02]"
+        />
+      </div>
+
+      {/* 3. Hero Content Container */}
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col justify-between py-8 sm:py-10 lg:py-14 flex-1">
+        
+        {/* Top Row: Headline (Left) & 1K+ Members Avatar Stack (Right) */}
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
+          {/* Main Headline */}
+          <div className="max-w-xl">
+            <h1 className="font-headline text-7xl sm:text-8xl md:text-9xl lg:text-[130px] xl:text-[156px] tracking-tight leading-[0.86] uppercase text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
+              FUEL BUILD<br />PERFORM
+            </h1>
+          </div>
+
+          {/* Top Right: 1K+ Members Stack */}
+          <div className="flex items-center gap-3 bg-black/45 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 shadow-xl self-start sm:self-auto shrink-0 mt-1">
+            <div className="flex -space-x-2.5 overflow-hidden">
+              <img 
+                alt="Member 1" 
+                className="inline-block h-8 w-8 rounded-full ring-2 ring-black object-cover" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUb9QxINPuy7oFWJLdAVY9LuQoIKmGyUb0jYd4QNKrKxWvifkRXQI0KyOEEes_vzDKF5uV2PYCKRr1wMvXTMrOcNSnB4CFRj7Sx2jSlYXCihLuUSrcRHnMImoc2qD8j06DxBPYzQ7Z8B6r1ksHFn4IiHtm-xXTCoy6bRWdnwb6pE132nha46nudl-FiSGU7NrxEfrLygJd4sSoa4GI9rvQ69g_T9uzbuQxdhwLsBTc" 
+              />
+              <img 
+                alt="Member 2" 
+                className="inline-block h-8 w-8 rounded-full ring-2 ring-black object-cover" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB79Sze41nnEl1T41AM5qP_d6I8ZUc5JwBRDQ5ZpV2kM2NRxB9m7kEAu9A7xQahXsCPdG71tzaNnDpgXxJLf-1Rs26M69cz-sC-zyr5HuVIDR9NBCCYOoSGkc-F0ICksFvdpjjWbABrgtjENuT_r9rj8-2QfJ34ux-aH6dhRd0nNtffjOPVw6JcqmIvzF-DcFzKeZ7VIXiTJbY8XcKV_HTVpA7f1R6CTyTgzBWYot_7" 
+              />
+              <img 
+                alt="Member 3" 
+                className="inline-block h-8 w-8 rounded-full ring-2 ring-black object-cover" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt6ycWPW52LCOsDvbJDS454KZNRsQhrohBnja0UAIxcyQnpKMG-EGZvNyp7KQcyHt0Kl68qaxuGv8KhVILk1_LjK7wswjdga0Qidw8Cuiwi26G21hpsURTGjCq5B6jC7SnmL0Z-P66fDf76g_pr7MzeDG8Cmx741E0lX-XR-k-a-LaoEH4fAv_CuAlwoU8LEk6fu7mFZCOJByaRc-1qE9EEY2dFesr8aPmNLEGMLGq" 
+              />
             </div>
-
-            {/* Headline and 50% Larger Transparent Athlete Side-by-Side */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 lg:gap-8">
-              <h1 className="font-headline text-6xl sm:text-7xl md:text-8xl xl:text-9xl tracking-tight leading-[0.88] uppercase text-white drop-shadow-sm select-none shrink-0">
-                FUEL BUILD<br />PERFORM
-              </h1>
-
-              {/* Transparent Athlete (No Background, 50% Larger, Blended directly with Website) */}
-              <div className="relative shrink-0 flex items-center justify-center -my-4 sm:-my-6 lg:-my-8 group">
-                {/* Subtle crimson aura behind athlete */}
-                <div className="absolute inset-0 bg-brand-crimson/25 blur-3xl rounded-full scale-90 pointer-events-none transition-opacity duration-700 group-hover:bg-brand-crimson/40"></div>
-
-                <img 
-                  src={heroAthleteTransparent} 
-                  alt="COREX Athlete Performing Heavy Single-Arm Row" 
-                  className="relative z-10 w-72 sm:w-80 md:w-96 lg:w-[410px] xl:w-[460px] h-auto object-contain select-none pointer-events-none drop-shadow-[0_25px_35px_rgba(0,0,0,0.85)] drop-shadow-[0_0_30px_rgba(139,20,36,0.35)] hover:scale-105 transition-transform duration-700 ease-out"
-                />
-
-                {/* Floating Athlete Stat Pill */}
-                <div className="absolute -bottom-2 sm:bottom-2 right-0 sm:right-4 z-20 bg-black/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-brand-crimson/50 text-[10px] font-bold tracking-wider uppercase text-zinc-200 shadow-2xl flex items-center gap-1.5 select-none pointer-events-none">
-                  <Flame className="w-3.5 h-3.5 text-brand-crimson shrink-0" />
-                  <span>DUMBBELL ROW &bull; 45KG</span>
-                </div>
-              </div>
+            <div className="text-left">
+              <div className="text-[11px] font-bold tracking-wider leading-none uppercase text-white">1K+ MEMBERS</div>
+              <div className="text-[10px] text-zinc-300 font-medium tracking-wide uppercase">TRAIN WITH US</div>
             </div>
+          </div>
+        </div>
 
-            <p className="max-w-xl text-zinc-200 text-sm sm:text-base font-normal leading-relaxed">
+        {/* Bottom Row: Narrative Paragraph & Actions (Left) and Highlight Card & CTA (Right) */}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 pt-8 lg:pt-0">
+          
+          {/* Bottom Left Paragraph & CTAs */}
+          <div className="max-w-md sm:max-w-lg space-y-4">
+            <p className="text-zinc-200 text-xs sm:text-sm font-normal leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
               Athletes and everyday trainers are being asked to push harder, move smarter, and train with purpose — building strength, confidence, and lasting performance.
             </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-4">
+            
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
                 onClick={() => onOpenJoinModal('all-access')}
-                className="bg-brand-crimson hover:bg-brand-crimsonHover text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded-full transition-all duration-300 shadow-xl shadow-brand-crimson/30 flex items-center gap-2 group active:scale-95"
+                className="bg-brand-crimson hover:bg-brand-crimsonHover text-white text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-full transition-all duration-300 shadow-xl shadow-brand-crimson/30 flex items-center gap-2 group active:scale-95 cursor-pointer"
               >
-                JOIN THE TRIBE
+                JOIN NOW
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
 
               <button
                 onClick={onOpenConsultModal}
-                className="bg-black/40 hover:bg-black/60 border border-white/20 text-white text-xs font-bold uppercase tracking-widest px-6 py-3.5 rounded-full transition-all duration-300 backdrop-blur-sm"
+                className="bg-black/45 hover:bg-black/70 border border-white/20 text-white text-xs font-bold uppercase tracking-widest px-5 py-3 rounded-full transition-all duration-300 backdrop-blur-sm active:scale-95 cursor-pointer"
               >
                 FREE INTAKE ASSESSMENT
               </button>
             </div>
           </div>
 
-          {/* Right Hero Cards & Badge Column */}
-          <div className="lg:col-span-4 flex flex-col justify-between items-start lg:items-end gap-10">
-            {/* Avatar Stack Proof */}
-            <div className="flex items-center gap-3 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 self-start lg:self-end">
-              <div className="flex -space-x-2.5 overflow-hidden">
-                <img 
-                  alt="Member avatar 1" 
-                  className="inline-block h-8 w-8 rounded-full ring-2 ring-[#0d0d10] object-cover" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUb9QxINPuy7oFWJLdAVY9LuQoIKmGyUb0jYd4QNKrKxWvifkRXQI0KyOEEes_vzDKF5uV2PYCKRr1wMvXTMrOcNSnB4CFRj7Sx2jSlYXCihLuUSrcRHnMImoc2qD8j06DxBPYzQ7Z8B6r1ksHFn4IiHtm-xXTCoy6bRWdnwb6pE132nha46nudl-FiSGU7NrxEfrLygJd4sSoa4GI9rvQ69g_T9uzbuQxdhwLsBTc" 
-                />
-                <img 
-                  alt="Member avatar 2" 
-                  className="inline-block h-8 w-8 rounded-full ring-2 ring-[#0d0d10] object-cover" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB79Sze41nnEl1T41AM5qP_d6I8ZUc5JwBRDQ5ZpV2kM2NRxB9m7kEAu9A7xQahXsCPdG71tzaNnDpgXxJLf-1Rs26M69cz-sC-zyr5HuVIDR9NBCCYOoSGkc-F0ICksFvdpjjWbABrgtjENuT_r9rj8-2QfJ34ux-aH6dhRd0nNtffjOPVw6JcqmIvzF-DcFzKeZ7VIXiTJbY8XcKV_HTVpA7f1R6CTyTgzBWYot_7" 
-                />
-                <img 
-                  alt="Member avatar 3" 
-                  className="inline-block h-8 w-8 rounded-full ring-2 ring-[#0d0d10] object-cover" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt6ycWPW52LCOsDvbJDS454KZNRsQhrohBnja0UAIxcyQnpKMG-EGZvNyp7KQcyHt0Kl68qaxuGv8KhVILk1_LjK7wswjdga0Qidw8Cuiwi26G21hpsURTGjCq5B6jC7SnmL0Z-P66fDf76g_pr7MzeDG8Cmx741E0lX-XR-k-a-LaoEH4fAv_CuAlwoU8LEk6fu7mFZCOJByaRc-1qE9EEY2dFesr8aPmNLEGMLGq" 
-                />
-              </div>
-              <div className="text-left">
-                <div className="text-[11px] font-bold tracking-wider leading-none uppercase">750+ MEMBERS</div>
-                <div className="text-[10px] text-zinc-400 font-medium tracking-wide">TRAIN WITH US</div>
-              </div>
-            </div>
-
-            {/* Hero Highlight Card */}
-            <div className="bg-black/55 backdrop-blur-md border border-white/15 p-6 rounded-2xl max-w-xs self-start lg:self-end text-left shadow-2xl">
-              <p className="font-headline text-lg sm:text-xl text-zinc-100 tracking-wide uppercase leading-tight mb-4">
-                THE ESSENTIAL INGREDIENT FOR STRONGER BODIES AND LASTING RESULTS
-              </p>
-              <button
-                onClick={() => onOpenJoinModal('all-access')}
-                className="inline-block bg-white text-zinc-950 font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full hover:bg-zinc-200 transition active:scale-95 cursor-pointer"
-              >
-                BECOME A MEMBER
-              </button>
-            </div>
+          {/* Bottom Right Highlight Callout & Button */}
+          <div className="max-w-[280px] sm:max-w-xs text-left space-y-3 lg:self-end">
+            <p className="font-headline text-lg sm:text-xl md:text-2xl text-white tracking-wide uppercase leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+              THE ESSENTIAL INGREDIENT FOR STRONGER BODIES AND LASTING RESULTS
+            </p>
+            
+            <button
+              onClick={() => onOpenJoinModal('all-access')}
+              className="inline-block bg-white text-zinc-950 font-bold text-xs uppercase tracking-wider px-6 py-2.5 rounded-full hover:bg-zinc-200 transition-all duration-300 shadow-2xl active:scale-95 cursor-pointer"
+            >
+              BECOME A MEMBER
+            </button>
           </div>
+
         </div>
+
       </div>
     </section>
   );
 }
-

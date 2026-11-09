@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { fetchSchedules } from '../services/api';
-import { Clock, Users, User, RefreshCw, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Clock, Users, User, RefreshCw, AlertCircle, CheckCircle2, Search } from 'lucide-react';
 
-export default function Schedule({ onBookClass, refreshTrigger }) {
+export default function Schedule({ onBookClass, refreshTrigger, activeCategory = 'ALL', onCategoryChange }) {
   const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
   const [activeDay, setActiveDay] = useState('MON');
   const [schedules, setSchedules] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [categoryFilter, setCategoryFilter] = useState('ALL');
+  const [categoryFilter, setCategoryFilter] = useState(activeCategory);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Sync with external category if updated
+  useEffect(() => {
+    if (activeCategory) {
+      setCategoryFilter(activeCategory);
+    }
+  }, [activeCategory]);
+
+  const handleCategorySelect = (cat) => {
+    setCategoryFilter(cat);
+    if (onCategoryChange) onCategoryChange(cat);
+  };
 
   const loadDaySchedule = async (day) => {
     try {
@@ -33,8 +46,13 @@ export default function Schedule({ onBookClass, refreshTrigger }) {
   const categories = ['ALL', 'Strength', 'Conditioning', 'Hypertrophy', 'Cardio', 'Olympic', 'Recovery'];
 
   const filteredSchedules = schedules.filter(item => {
-    if (categoryFilter === 'ALL') return true;
-    return item.category && item.category.toLowerCase() === categoryFilter.toLowerCase();
+    const matchesCategory = categoryFilter === 'ALL' || (item.category && item.category.toLowerCase() === categoryFilter.toLowerCase());
+    const query = searchQuery.trim().toLowerCase();
+    const matchesSearch = !query || 
+      item.name.toLowerCase().includes(query) || 
+      item.coach.toLowerCase().includes(query) || 
+      item.time.includes(query);
+    return matchesCategory && matchesSearch;
   });
 
   return (
@@ -73,22 +91,36 @@ export default function Schedule({ onBookClass, refreshTrigger }) {
           ))}
         </div>
 
-        {/* Category Filters */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-6 mb-6 text-[11px] font-medium tracking-wider uppercase">
-          <span className="text-zinc-500 font-bold mr-1">FILTER:</span>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setCategoryFilter(cat)}
-              className={`px-3 py-1 rounded-full border transition ${
-                categoryFilter === cat
-                  ? 'border-brand-crimson bg-brand-crimson/20 text-white font-bold'
-                  : 'border-white/10 hover:border-white/30 text-zinc-400'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Category Filters & Quick Search Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-brand-borderDark/40">
+          <div className="flex items-center gap-2 overflow-x-auto text-[11px] font-medium tracking-wider uppercase scrollbar-none">
+            <span className="text-zinc-500 font-bold mr-1">FILTER:</span>
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => handleCategorySelect(cat)}
+                className={`px-3 py-1 rounded-full border transition whitespace-nowrap ${
+                  categoryFilter === cat
+                    ? 'border-brand-crimson bg-brand-crimson/20 text-white font-bold'
+                    : 'border-white/10 hover:border-white/30 text-zinc-400'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Real-time Search Input */}
+          <div className="relative w-full sm:w-64 shrink-0">
+            <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <input 
+              type="text"
+              placeholder="Search class or coach..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-[#0e0e11] border border-white/15 focus:border-brand-crimson rounded-full pl-8 pr-4 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none transition"
+            />
+          </div>
         </div>
 
         {/* Schedule Table Container */}

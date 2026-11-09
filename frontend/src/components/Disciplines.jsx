@@ -92,8 +92,17 @@ export default function Disciplines({ onSelectDiscipline, onOpenConsultModal }) 
                   if (item.id === 'coaching') {
                     onOpenConsultModal();
                   } else {
-                    const el = document.getElementById('schedule');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    const categoryMap = {
+                      strength: 'Strength',
+                      hiit: 'Conditioning',
+                      hypertrophy: 'Hypertrophy'
+                    };
+                    if (onSelectDiscipline) {
+                      onSelectDiscipline(categoryMap[item.id] || 'ALL');
+                    } else {
+                      const el = document.getElementById('schedule');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }
                   }
                 }}
               >
