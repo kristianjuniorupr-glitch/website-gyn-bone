@@ -50,16 +50,16 @@ export default function Trainers({ onOpenConsultModal }) {
   ];
 
   return (
-    <section className="bg-white py-12 sm:py-14 lg:py-16 border-t border-zinc-200 scroll-mt-20 lg:scroll-mt-24" id="trainers">
+    <section className="bg-white pt-4 sm:pt-6 pb-8 sm:pb-10 border-t border-zinc-200 scroll-mt-20" id="trainers">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Compact Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-4 sm:mb-5 gap-2 sm:gap-4">
           <div>
-            <span className="block text-xs font-bold uppercase tracking-widest text-brand-crimson mb-1">
+            <span className="block text-[11px] font-bold uppercase tracking-widest text-brand-crimson mb-0.5">
               COACHING STAFF
             </span>
-            <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl uppercase text-zinc-950 tracking-tight leading-none">
+            <h2 className="font-headline text-2xl sm:text-3xl lg:text-4xl uppercase text-zinc-950 tracking-tight leading-none">
               THE PEOPLE WHO PROGRAM YOU
             </h2>
           </div>
@@ -72,15 +72,15 @@ export default function Trainers({ onOpenConsultModal }) {
           </button>
         </div>
 
-        {/* Coach Gallery 4 Columns - Proportional & Fully In-View */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Coach Gallery 4 Columns - Proportional & Fully In-View Without Scrolling */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {displayTrainers.map((coach) => (
             <div 
               key={coach.id} 
-              className="overflow-hidden rounded-2xl bg-zinc-50 group border border-zinc-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+              className="overflow-hidden rounded-xl bg-zinc-50 group border border-zinc-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
             >
-              {/* Image Container: Proportional height so text is immediately visible */}
-              <div className="h-48 sm:h-52 lg:h-56 overflow-hidden relative bg-zinc-900 shrink-0">
+              {/* Image Container: Proportional height so card and text are 100% visible on screen */}
+              <div className="h-36 sm:h-40 lg:h-44 overflow-hidden relative bg-zinc-900 shrink-0">
                 <img 
                   alt={coach.name} 
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0" 
@@ -90,22 +90,22 @@ export default function Trainers({ onOpenConsultModal }) {
               </div>
               
               {/* Compact Information Box */}
-              <div className="p-4 bg-white flex flex-col justify-between flex-1">
+              <div className="p-3 sm:p-3.5 bg-white flex flex-col justify-between flex-1">
                 <div>
-                  <h4 className="font-headline text-xl text-zinc-900 tracking-wide uppercase leading-tight">
+                  <h4 className="font-headline text-lg sm:text-xl text-zinc-900 tracking-wide uppercase leading-tight">
                     {coach.name}
                   </h4>
                   <p className="text-[10px] font-bold text-brand-crimson tracking-wider uppercase mt-0.5 mb-1">
                     {coach.role}
                   </p>
                   {coach.specialty && (
-                    <p className="text-xs text-zinc-600 line-clamp-2 leading-relaxed">
+                    <p className="text-[11px] text-zinc-600 line-clamp-1 leading-snug">
                       {coach.specialty}
                     </p>
                   )}
                 </div>
 
-                <div className="pt-2.5 mt-3 border-t border-zinc-100 flex items-center justify-between">
+                <div className="pt-2 mt-2 border-t border-zinc-100 flex items-center justify-between">
                   <span className="text-[10px] font-semibold text-zinc-400 uppercase">
                     {coach.experience || 'Senior Coach'}
                   </span>

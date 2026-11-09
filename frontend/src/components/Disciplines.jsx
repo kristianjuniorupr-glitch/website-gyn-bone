@@ -48,16 +48,16 @@ export default function Disciplines({ onSelectDiscipline, onOpenConsultModal }) 
   };
 
   return (
-    <section className="bg-[#f7f7f8] py-12 sm:py-14 lg:py-16 border-t border-zinc-200 scroll-mt-20 lg:scroll-mt-24" id="disciplines">
+    <section className="bg-[#f7f7f8] pt-4 sm:pt-6 pb-8 sm:pb-10 border-t border-zinc-200 scroll-mt-20" id="disciplines">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex items-end justify-between mb-8 gap-4">
+        <div className="flex items-end justify-between mb-4 sm:mb-5 gap-4">
           <div>
-            <span className="block text-xs font-bold uppercase tracking-widest text-brand-crimson mb-1">
+            <span className="block text-[11px] font-bold uppercase tracking-widest text-brand-crimson mb-0.5">
               ATHLETIC DOMAINS
             </span>
-            <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl uppercase text-zinc-950 tracking-tight leading-none">
+            <h2 className="font-headline text-2xl sm:text-3xl lg:text-4xl uppercase text-zinc-950 tracking-tight leading-none">
               PICK YOUR DISCIPLINE
             </h2>
           </div>
@@ -67,14 +67,14 @@ export default function Disciplines({ onSelectDiscipline, onOpenConsultModal }) 
             <button 
               onClick={prevSlide}
               aria-label="Previous slide" 
-              className="w-9 h-9 rounded-full border border-zinc-300 hover:border-zinc-900 flex items-center justify-center text-zinc-700 hover:text-zinc-900 transition active:scale-95 cursor-pointer"
+              className="w-8 h-8 rounded-full border border-zinc-300 hover:border-zinc-900 flex items-center justify-center text-zinc-700 hover:text-zinc-900 transition active:scale-95 cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button 
               onClick={nextSlide}
               aria-label="Next slide" 
-              className="w-9 h-9 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-zinc-800 transition active:scale-95 cursor-pointer"
+              className="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-zinc-800 transition active:scale-95 cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -82,13 +82,13 @@ export default function Disciplines({ onSelectDiscipline, onOpenConsultModal }) 
         </div>
 
         {/* Discipline Cards Grid - Viewport Friendly */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {disciplines.map((item) => {
             const Icon = item.icon;
             return (
               <div 
                 key={item.id}
-                className="relative group rounded-2xl overflow-hidden h-72 sm:h-80 lg:h-[340px] bg-zinc-900 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-end cursor-pointer"
+                className="relative group rounded-xl overflow-hidden h-56 sm:h-64 lg:h-[270px] bg-zinc-900 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-end cursor-pointer"
                 onClick={() => {
                   if (item.id === 'coaching') {
                     onOpenConsultModal();
@@ -116,15 +116,15 @@ export default function Disciplines({ onSelectDiscipline, onOpenConsultModal }) 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
                 
                 {/* Discipline Tag */}
-                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md p-2 rounded-full border border-white/10 text-white">
-                  <Icon className="w-4 h-4 text-brand-crimson" />
+                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md p-1.5 rounded-full border border-white/10 text-white">
+                  <Icon className="w-3.5 h-3.5 text-brand-crimson" />
                 </div>
 
-                <div className="relative z-10 p-5 text-white">
-                  <h3 className="font-headline text-2xl sm:text-3xl tracking-wide uppercase mb-1.5 group-hover:text-red-400 transition-colors">
+                <div className="relative z-10 p-4 text-white">
+                  <h3 className="font-headline text-xl sm:text-2xl tracking-wide uppercase mb-1 group-hover:text-red-400 transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-zinc-300 leading-snug mb-2.5 line-clamp-2">
+                  <p className="text-[11px] text-zinc-300 leading-snug mb-2 line-clamp-2">
                     {item.tagline}
                   </p>
                   <span className="inline-flex items-center text-[10px] font-bold uppercase tracking-wider text-brand-crimson group-hover:text-white transition">

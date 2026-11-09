@@ -54,19 +54,16 @@ export default function FAQ() {
   };
 
   return (
-    <section className="bg-white py-12 sm:py-14 lg:py-16 border-t border-zinc-200 scroll-mt-20 lg:scroll-mt-24" id="faq">
+    <section className="bg-white pt-4 sm:pt-6 pb-8 sm:pb-10 border-t border-zinc-200 scroll-mt-20" id="faq">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
           {/* Left Title */}
           <div className="lg:col-span-5">
-            <div className="sticky top-28 space-y-4">
-              <span className="block text-xs font-bold uppercase tracking-widest text-brand-crimson">
+            <div className="sticky top-24 space-y-3">
+              <span className="block text-[11px] font-bold uppercase tracking-widest text-brand-crimson">
                 FAQ & ASSISTANCE
               </span>
-              <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl uppercase text-zinc-950 tracking-tight leading-none">
-                FREQUENTLY ASKED QUESTIONS
-              </h2>
-              <h2 className="font-headline text-5xl sm:text-7xl uppercase text-zinc-950 tracking-tight leading-none select-none">
+              <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl uppercase text-zinc-950 tracking-tight leading-none select-none">
                 QUESTIONS<br />BEFORE YOU<br />START?
               </h2>
               <p className="text-zinc-500 text-xs sm:text-sm max-w-sm leading-relaxed">
@@ -80,13 +77,13 @@ export default function FAQ() {
             {items.map((item) => {
               const isOpen = openId === item.id;
               return (
-                <div key={item.id} className="py-6" data-purpose="faq-item">
+                <div key={item.id} className="py-3.5 sm:py-4" data-purpose="faq-item">
                   <button
                     onClick={() => toggle(item.id)}
                     className="w-full flex items-center justify-between text-left group cursor-pointer focus:outline-none"
                     aria-expanded={isOpen}
                   >
-                    <h4 className="text-sm font-bold text-zinc-900 uppercase tracking-wide group-hover:text-brand-crimson transition-colors">
+                    <h4 className="text-xs sm:text-sm font-bold text-zinc-900 uppercase tracking-wide group-hover:text-brand-crimson transition-colors">
                       {item.question}
                     </h4>
                     <span className="text-xl font-light text-zinc-400 group-hover:text-zinc-900 transition ml-4 shrink-0">

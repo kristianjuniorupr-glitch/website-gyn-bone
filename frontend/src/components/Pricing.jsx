@@ -54,22 +54,22 @@ export default function Pricing({ onOpenJoinModal }) {
   ];
 
   return (
-    <section className="bg-white py-12 sm:py-14 lg:py-16 border-t border-zinc-200 scroll-mt-20 lg:scroll-mt-24" id="pricing">
+    <section className="bg-white pt-4 sm:pt-6 pb-8 sm:pb-10 border-t border-zinc-200 scroll-mt-20" id="pricing">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Headline & Billing Toggle */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <span className="block text-xs font-bold uppercase tracking-widest text-brand-crimson mb-1.5">
+        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
+          <span className="block text-[11px] font-bold uppercase tracking-widest text-brand-crimson mb-1">
             TRANSPARENT MEMBERSHIPS
           </span>
-          <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl uppercase text-zinc-950 tracking-tight mb-4 select-none">
+          <h2 className="font-headline text-2xl sm:text-3xl lg:text-4xl uppercase text-zinc-950 tracking-tight mb-3 select-none">
             NO CONTRACTS NO EXCUSES
           </h2>
 
           {/* Billing Pill */}
-          <div className="inline-flex items-center bg-zinc-100 p-1.5 rounded-full border border-zinc-300">
+          <div className="inline-flex items-center bg-zinc-100 p-1 rounded-full border border-zinc-300">
             <button 
               onClick={() => setBillingCycle('monthly')}
-              className={`text-xs font-bold uppercase tracking-wider px-6 py-2 rounded-full transition-all duration-200 ${
+              className={`text-xs font-bold uppercase tracking-wider px-5 py-1.5 rounded-full transition-all duration-200 ${
                 billingCycle === 'monthly'
                   ? 'bg-zinc-900 text-white shadow-md'
                   : 'text-zinc-600 hover:text-zinc-950'
@@ -79,14 +79,14 @@ export default function Pricing({ onOpenJoinModal }) {
             </button>
             <button 
               onClick={() => setBillingCycle('yearly')}
-              className={`text-xs font-bold uppercase tracking-wider px-6 py-2 rounded-full transition-all duration-200 flex items-center gap-1.5 ${
+              className={`text-xs font-bold uppercase tracking-wider px-5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 ${
                 billingCycle === 'yearly'
                   ? 'bg-zinc-900 text-white shadow-md'
                   : 'text-zinc-600 hover:text-zinc-950'
               }`}
             >
               YEARLY
-              <span className="bg-brand-crimson text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full">
+              <span className="bg-brand-crimson text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-full">
                 SAVE 20%
               </span>
             </button>
@@ -96,7 +96,7 @@ export default function Pricing({ onOpenJoinModal }) {
         {/* Pricing Cards 3-tier */}
         <div 
           onMouseLeave={() => setHoveredId(null)}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch pt-4"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6 items-stretch pt-2"
         >
           {plans.map((plan) => {
             const price = billingCycle === 'yearly' ? plan.yearlyPrice : plan.monthlyPrice;
@@ -112,15 +112,15 @@ export default function Pricing({ onOpenJoinModal }) {
                 onMouseEnter={() => setHoveredId(plan.id)}
                 onTouchStart={() => setHoveredId(plan.id)}
                 onClick={() => setHoveredId(plan.id)}
-                className={`group rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 transform relative cursor-pointer ${
+                className={`group rounded-xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 transform relative cursor-pointer ${
                   isRed
-                    ? 'bg-brand-crimson text-white border-2 border-brand-crimsonHover shadow-2xl -translate-y-2 scale-[1.02]'
+                    ? 'bg-brand-crimson text-white border-2 border-brand-crimsonHover shadow-xl -translate-y-1 scale-[1.01]'
                     : 'bg-white text-zinc-900 border border-zinc-200 shadow-sm hover:border-zinc-300 scale-100'
                 }`}
               >
                 {/* Most Popular Badge */}
                 {plan.badge && (
-                  <div className={`absolute -top-3.5 right-6 text-[10px] font-bold tracking-widest uppercase px-3.5 py-1 rounded-full shadow-lg border transition-colors duration-300 ${
+                  <div className={`absolute -top-3 right-5 text-[9px] font-bold tracking-widest uppercase px-3 py-0.5 rounded-full shadow-md border transition-colors duration-300 ${
                     isRed
                       ? 'bg-black text-white border-white/20'
                       : 'bg-brand-crimson text-white border-brand-crimsonHover'
@@ -130,20 +130,20 @@ export default function Pricing({ onOpenJoinModal }) {
                 )}
 
                 <div>
-                  <h3 className={`font-headline text-3xl uppercase mb-2 transition-colors duration-300 ${
+                  <h3 className={`font-headline text-2xl uppercase mb-1 transition-colors duration-300 ${
                     isRed ? 'text-white' : 'text-zinc-900'
                   }`}>
                     {plan.name}
                   </h3>
                   
-                  <p className={`text-xs mb-6 transition-colors duration-300 ${
+                  <p className={`text-xs mb-3 line-clamp-2 transition-colors duration-300 ${
                     isRed ? 'text-white/80' : 'text-zinc-500'
                   }`}>
                     {plan.description}
                   </p>
 
-                  <div className="flex items-baseline mb-6">
-                    <span className={`font-headline text-6xl transition-colors duration-300 ${
+                  <div className="flex items-baseline mb-3">
+                    <span className={`font-headline text-4xl sm:text-5xl transition-colors duration-300 ${
                       isRed ? 'text-white' : 'text-zinc-950'
                     }`}>
                       ${price}
@@ -155,35 +155,35 @@ export default function Pricing({ onOpenJoinModal }) {
                     </span>
                   </div>
 
-                  <ul className={`space-y-4 text-xs font-medium border-t pt-6 transition-colors duration-300 ${
+                  <ul className={`space-y-2 text-xs font-medium border-t pt-3 transition-colors duration-300 ${
                     isRed 
                       ? 'text-zinc-100 border-white/20' 
                       : 'text-zinc-600 border-zinc-100'
                   }`}>
                     {plan.features.map((feat, i) => (
-                      <li key={i} className="flex items-center gap-2.5">
-                        <span className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 transition-colors duration-300 ${
+                      <li key={i} className="flex items-center gap-2">
+                        <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center shrink-0 transition-colors duration-300 ${
                           isRed 
                             ? 'bg-white/20 text-white' 
                             : 'bg-brand-crimson/10 text-brand-crimson'
                         }`}>
                           <Check className="w-2.5 h-2.5" />
                         </span>
-                        <span>{feat}</span>
+                        <span className="leading-tight">{feat}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="pt-8">
+                <div className="pt-4 mt-3">
                   <button 
                     onClick={(e) => {
                       e.stopPropagation();
                       onOpenJoinModal(plan.id, billingCycle);
                     }}
-                    className={`w-full text-xs font-bold uppercase tracking-widest py-3.5 rounded-full transition-all duration-300 active:scale-95 shadow-lg ${
+                    className={`w-full text-xs font-bold uppercase tracking-widest py-2.5 rounded-full transition-all duration-300 active:scale-95 shadow-md ${
                       isRed
-                        ? 'bg-white hover:bg-zinc-100 text-zinc-950 shadow-xl'
+                        ? 'bg-white hover:bg-zinc-100 text-zinc-950 shadow-lg'
                         : 'bg-zinc-900 hover:bg-zinc-800 text-white'
                     }`}
                   >
