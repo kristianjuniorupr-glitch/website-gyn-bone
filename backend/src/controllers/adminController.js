@@ -139,13 +139,6 @@ function requireAdminAuth(req, res, next) {
   };
   next();
 }
-    username: session.username,
-    role: session.role,
-    name: session.name
-  };
-
-  next();
-}
 
 /**
  * Get Live Stats
