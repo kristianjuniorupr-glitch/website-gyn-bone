@@ -1,7 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
-const DB_PATH = path.join(__dirname, '../../data/gym_data.json');
+const ORIGINAL_DB_PATH = path.join(__dirname, '../../data/gym_data.json');
+// In Vercel serverless functions, the root filesystem is read-only. We use /tmp to allow safe read/write operations.
+const DB_PATH = process.env.VERCEL
+  ? path.join('/tmp', 'gym_data.json')
+  : ORIGINAL_DB_PATH;
 
 const INITIAL_DATA = {
   schedules: [
@@ -259,6 +263,14 @@ function initDB() {
   }
 
   if (!fs.existsSync(DB_PATH)) {
+    if (fs.existsSync(ORIGINAL_DB_PATH)) {
+      try {
+        fs.copyFileSync(ORIGINAL_DB_PATH, DB_PATH);
+        return;
+      } catch (err) {
+        // Fall back to INITIAL_DATA if copy fails
+      }
+    }
     fs.writeFileSync(DB_PATH, JSON.stringify(INITIAL_DATA, null, 2), 'utf-8');
   }
 }
