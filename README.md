@@ -32,7 +32,7 @@ Aplikasi Web Fullstack Modern untuk Gym & Pusat Kebugaran **GYM BONE Strength an
   - Halaman publik (`/`) bersih tanpa tombol admin demi tampilan profesional bagi pengunjung & anggota.
   - Halaman admin khusus diakses melalui URL: **`http://localhost:5000/admin`**.
   - **Custom Login Endpoint**: Proteksi sesi staf melalui `POST /api/admin/login` dengan Bearer token.
-  - Kredensial default: Username `admin` / Password `corex2026` (dikonfigurasi di `backend/.env`).
+  - Kredensial default: Username `admin_gym` / Password `Gymbone2026` (dikonfigurasi di `backend/.env`).
   - Metrik statistik gym secara live (total booking, kapasitas utilisasi, total member aktif, dan pelanggan newsletter).
   - Manajemen reservasi kelas dengan fitur **Batalkan Booking (1-Click Cancel)** yang otomatis mengembalikan kuota slot ke jadwal.
   - Daftar direktori anggota terdaftar & daftar email prospek newsletter.

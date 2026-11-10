@@ -36,8 +36,8 @@ function adminLogin(req, res) {
   try {
     const { username, password } = req.body;
 
-    const validUsername = process.env.ADMIN_USERNAME || 'admin';
-    const validPassword = process.env.ADMIN_PASSWORD || 'corex2026';
+    const validUsername = process.env.ADMIN_USERNAME || 'admin_gym';
+    const validPassword = process.env.ADMIN_PASSWORD || 'Gymbone2026';
 
     if (!username || !password) {
       return res.status(400).json({

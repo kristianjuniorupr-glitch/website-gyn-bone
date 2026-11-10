@@ -148,12 +148,6 @@ export default function AdminPage() {
     setPassword('');
   };
 
-  // Quick autofill demo credentials
-  const autofillDemo = () => {
-    setUsername('admin');
-    setPassword('corex2026');
-  };
-
   // Cancel Booking Action
   const handleCancelBooking = async (id) => {
     if (!window.confirm(`Are you sure you want to cancel booking ${id}? The spot will be returned to the class schedule.`)) {
@@ -339,19 +333,6 @@ export default function AdminPage() {
                 )}
               </button>
             </form>
-
-            {/* Autofill Demo Pill */}
-            <div className="mt-8 pt-6 border-t border-white/10 text-center">
-              <span className="text-[11px] text-zinc-500 block mb-2">Development Demo Access:</span>
-              <button
-                type="button"
-                onClick={autofillDemo}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-[10px] font-bold uppercase tracking-wider text-zinc-300 transition"
-                title="Click to autofill test credentials"
-              >
-                <span>Autofill Demo (admin / corex2026)</span>
-              </button>
-            </div>
           </div>
         </div>
 
