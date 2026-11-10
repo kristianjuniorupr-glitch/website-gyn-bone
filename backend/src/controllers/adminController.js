@@ -1,12 +1,30 @@
 const crypto = require('crypto');
 const { readData, writeData, resetData } = require('../config/db');
 
-// In-memory active session tokens store (token -> { username, role, expiresAt })
-const activeSessions = new Map();
+const SECRET_KEY = process.env.ADMIN_SECRET_KEY || 'corex_super_secret_jwt_key_2026_strength_conditioning';
 
-// Helper to generate token
-function generateToken() {
-  return crypto.randomBytes(32).toString('hex');
+// Stateless signed token generator (serverless-friendly, persists across all Vercel lambda instances)
+function generateSignedToken(payload) {
+  const payloadStr = Buffer.from(JSON.stringify(payload)).toString('base64url');
+  const signature = crypto.createHmac('sha256', SECRET_KEY).update(payloadStr).digest('base64url');
+  return `${payloadStr}.${signature}`;
+}
+
+// Verify stateless signed token
+function verifySignedToken(token) {
+  if (!token || typeof token !== 'string') return null;
+  const parts = token.split('.');
+  if (parts.length !== 2) return null;
+  const [payloadStr, signature] = parts;
+  const expectedSignature = crypto.createHmac('sha256', SECRET_KEY).update(payloadStr).digest('base64url');
+  if (signature !== expectedSignature) return null;
+  try {
+    const payload = JSON.parse(Buffer.from(payloadStr, 'base64url').toString('utf8'));
+    if (!payload.expiresAt || Date.now() > payload.expiresAt) return null;
+    return payload;
+  } catch (err) {
+    return null;
+  }
 }
 
 /**
@@ -36,7 +54,6 @@ function adminLogin(req, res) {
     }
 
     // Generate session token (valid for 24 hours)
-    const token = generateToken();
     const expiresAt = Date.now() + 24 * 60 * 60 * 1000;
 
     const sessionData = {
@@ -46,7 +63,7 @@ function adminLogin(req, res) {
       expiresAt
     };
 
-    activeSessions.set(token, sessionData);
+    const token = generateSignedToken(sessionData);
 
     return res.json({
       success: true,
@@ -70,15 +87,6 @@ function adminLogin(req, res) {
  */
 function adminLogout(req, res) {
   try {
-    const authHeader = req.headers.authorization;
-    const token = authHeader && authHeader.startsWith('Bearer ')
-      ? authHeader.substring(7)
-      : req.headers['x-admin-token'];
-
-    if (token) {
-      activeSessions.delete(token);
-    }
-
     return res.json({
       success: true,
       message: 'Successfully logged out.'
@@ -116,7 +124,7 @@ function requireAdminAuth(req, res, next) {
     });
   }
 
-  const session = activeSessions.get(token);
+  const session = verifySignedToken(token);
   if (!session) {
     return res.status(401).json({
       success: false,
@@ -124,15 +132,13 @@ function requireAdminAuth(req, res, next) {
     });
   }
 
-  if (Date.now() > session.expiresAt) {
-    activeSessions.delete(token);
-    return res.status(401).json({
-      success: false,
-      message: 'Session has expired. Please log in again.'
-    });
-  }
-
   req.admin = {
+    username: session.username,
+    role: session.role,
+    name: session.name
+  };
+  next();
+}
     username: session.username,
     role: session.role,
     name: session.name

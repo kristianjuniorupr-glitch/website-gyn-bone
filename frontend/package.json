@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node -e \"const fs=require('fs'); fs.copyFileSync('dist/index.html','dist/admin.html'); fs.mkdirSync('dist/admin',{recursive:true}); fs.copyFileSync('dist/index.html','dist/admin/index.html'); fs.mkdirSync('dist/admin/login',{recursive:true}); fs.copyFileSync('dist/index.html','dist/admin/login/index.html');\"",
     "lint": "oxlint",
     "preview": "vite preview"
   },
