@@ -18,6 +18,13 @@
       }
     },
     {
+      "source": "/admin(.*)",
+      "destination": {
+        "service": "frontend",
+        "path": "/index.html"
+      }
+    },
+    {
       "source": "/(.*)",
       "destination": {
         "service": "frontend"
